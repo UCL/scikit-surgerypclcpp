@@ -13,6 +13,7 @@
 #============================================================================*/
 
 option(BUILD_VTK "Build VTK." OFF)
+mark_as_advanced(BUILD_VTK)
 
 set(DEFAULT_VTK_VERSION "v8.2.0")
 set(FALLBACK_VTK_VERSION "v6.1.0") # Should only be needed on Mac, if PCL visualization tools are on, or OpenCV visualisation on.

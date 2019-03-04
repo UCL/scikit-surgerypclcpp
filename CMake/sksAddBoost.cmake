@@ -12,7 +12,8 @@
 #
 #============================================================================*/
 
-option(BUILD_Boost "Build Boost." OFF)
+option(BUILD_Boost "Build Boost." ON)
+mark_as_advanced(BUILD_Boost)
 
 if(BUILD_Boost)
 

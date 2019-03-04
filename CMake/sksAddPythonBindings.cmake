@@ -12,8 +12,8 @@
 #
 #============================================================================*/
 
-option(BUILD_Python_Boost "Build boost::python bindings." OFF)
-option(BUILD_Python_PyBind "Build PyBind11 bindings." OFF)
+option(BUILD_Python_Boost "Build boost::python bindings." ON)
+mark_as_advanced(BUILD_Python_Boost)
 
 if(BUILD_Python_Boost AND BUILD_Python_PyBind)
   message(FATAL_ERROR "BUILD_Python_Boost and BUILD_Python_PyBind are mutually exclusive. Please pick one or the other!")

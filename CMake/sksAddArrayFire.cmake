@@ -13,3 +13,4 @@
 #============================================================================*/
 
 option(BUILD_ArrayFire "Build ArrayFire." OFF)
+mark_as_advanced(BUILD_ArrayFire)

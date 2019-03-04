@@ -12,7 +12,9 @@
 #
 #============================================================================*/
 
-option(BUILD_PCL "Build PCL." OFF)
+option(BUILD_PCL "Build PCL." ON)
+mark_as_advanced(BUILD_PCL)
+
 if(BUILD_PCL)
   find_package(OpenGL REQUIRED)
   option(BUILD_PCL_VIS "Build PCL Visualisation tools." OFF)

@@ -13,6 +13,7 @@
 #============================================================================*/
 
 option(BUILD_UNITY_WRAPPER "Build Unity Wrapper." OFF)
+mark_as_advanced(BUILD_UNITY_WRAPPER)
 
 if(BUILD_UNITY_WRAPPER AND BUILD_SHARED_LIBS)
   set(BUILD_SHARED_LIBS OFF CACHE BOOL "Build Shared Libraries" FORCE)

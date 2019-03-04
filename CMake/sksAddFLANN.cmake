@@ -12,4 +12,6 @@
 #
 #============================================================================*/
 
-option(BUILD_FLANN "Build FLANN." OFF)
+option(BUILD_FLANN "Build FLANN." ON)
+mark_as_advanced(BUILD_FLANN)
+

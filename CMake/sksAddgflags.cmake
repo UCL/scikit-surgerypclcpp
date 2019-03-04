@@ -13,3 +13,4 @@
 #============================================================================*/
 
 option(BUILD_gflags "Build gflags." OFF)
+mark_as_advanced(BUILD_gflags)

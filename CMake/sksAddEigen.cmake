@@ -12,4 +12,5 @@
 #
 #============================================================================*/
 
-option(BUILD_Eigen "Build Eigen." OFF)
+option(BUILD_Eigen "Build Eigen." ON)
+mark_as_advanced(BUILD_Eigen)
