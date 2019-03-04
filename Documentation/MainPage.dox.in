@@ -1,0 +1,17 @@
+/**
+
+\mainpage The SKSURGERYPCLCPP (@SKSURGERYPCLCPP_VERSION_MAJOR@.@SKSURGERYPCLCPP_VERSION_MINOR@.@SKSURGERYPCLCPP_VERSION_PATCH@) Documentation
+
+Copyright (C) 2017 University College London (UCL). All rights reserved.
+
+\subpage SKSURGERYPCLCPPLicense
+
+\section MainPageIntro Introduction
+
+SKSURGERYPCLCPP is a software library to perform whatever.
+
+Further information can be obtained via
+
+\li <a href="https://www.mailinglists.ucl.ac.uk/">The users' mailing list</a>
+
+*/

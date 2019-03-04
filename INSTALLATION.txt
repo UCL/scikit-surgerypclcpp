@@ -1,0 +1,7 @@
+Installation Instructions.
+--------------------------
+
+This is the @SKSURGERYPCLCPP_PACKAGE_NAME@ software for whatever, version @SKSURGERYPCLCPP_VERSION_STRING@.
+
+For all questions and queries please contact: @SKSURGERYPCLCPP_CONTACT@.
+
