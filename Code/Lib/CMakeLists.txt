@@ -18,6 +18,7 @@ set(SKSURGERYPCLCPP_LIBRARY_SRCS
   sksBasicTypes.cpp
   sksMyFunctions.cpp
   sksException.cpp
+  sksIterativeClosestPoint.cpp
 )
 
 set(SKSURGERYPCLCPP_LIBRARY_HDRS
