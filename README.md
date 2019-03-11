@@ -18,7 +18,7 @@ Features
 --------
 
 * Support for Python Wheels, thanks to [Matthew Brett's multibuild](https://github.com/matthew-brett/multibuild).
-* More features to come
+* Iterative Closest Point (ICP) algorithm to register two N (rows) x 3 (columns, x, y, z) point sets.
 
 
 Installing
