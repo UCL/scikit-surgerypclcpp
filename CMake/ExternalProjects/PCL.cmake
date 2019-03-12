@@ -24,7 +24,7 @@ if(DEFINED PCL_DIR AND NOT EXISTS ${PCL_DIR})
   message(FATAL_ERROR "PCL_DIR variable is defined but corresponds to non-existing directory \"${PCL_DIR}\".")
 endif()
 
-set(version "c230159f92")
+set(version "72f41b60a5")
 set(location "https://github.com/PointCloudLibrary/pcl.git")
 mpMacroDefineExternalProjectVariables(PCL ${version} ${location})
 set(proj_DEPENDENCIES Boost Eigen FLANN)
