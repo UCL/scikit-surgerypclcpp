@@ -94,7 +94,7 @@ build_script:
     cd build
     cmake -G "${Env:COMPILER}" -DBUILD_SUPERBUILD:BOOL=ON -DBUILD_TESTING:BOOL=ON --config ${Env:CONFIGURATION} ..
     if ($LastExitCode -ne 0) {throw $LastExitCode}
-    cmake --build . --config ${Env:CONFIGURATION}
+    cmake --build . --config ${Env:CONFIGURATION} --parallel 2
     if ($LastExitCode -ne 0) {throw $LastExitCode}
 
 test_script:
