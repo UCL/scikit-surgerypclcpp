@@ -22,14 +22,9 @@ if(BUILD_PCL)
   find_package(PCL REQUIRED)
   include_directories(${PCL_INCLUDE_DIRS})
   link_directories(${PCL_LIBRARY_DIRS})
+  link_directories(${FLANN_DIR}/${_library_sub_dir})
   add_definitions(${PCL_DEFINITIONS})
   list(APPEND ALL_THIRD_PARTY_LIBRARIES ${PCL_LIBRARIES})
-
-message("Matt, PCL_INCLUDE_DIRS=${PCL_INCLUDE_DIRS}")
-message("Matt, PCL_LIBRARY_DIRS=${PCL_LIBRARY_DIRS}")
-message("Matt, PCL_LIBRARIES=${PCL_LIBRARIES}")
-message("Matt, FLANN_DIR=${FLANN_DIR}")
-message("Matt, _library_sub_dir=${_library_sub_dir}")
 
   # This appears to be missing from the list of PCL_LIBRARIES,
   # but I don't yet know why.
