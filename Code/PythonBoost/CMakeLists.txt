@@ -14,31 +14,22 @@
 
 if(NOT BUILDING_GUIS)
 
-
   if (NOT SKSURGERYPCLCPP_PYTHON_MODULE_NAME OR SKSURGERYPCLCPP_PYTHON_MODULE_NAME STREQUAL "")
     set(SKSURGERYPCLCPP_PYTHON_MODULE_NAME "sksurgerypclpython" CACHE STRING "Basename for python module." FORCE)
   endif()
 
   set(SKSURGERYPCLCPP_PYTHON_SRCS)
 
-  if (BUILD_OpenCV)
-    list(APPEND SKSURGERYPCLCPP_PYTHON_SRCS sksLibPythonWithOpenCV.cpp) #Rename as appropriate.
-    message("Including pyboostcvconverter, thanks to Gregory Kramida.")
+  list(APPEND SKSURGERYPCLCPP_PYTHON_SRCS
+    sksIterativeClosestPointWrapper.cpp
+    sksLibPython.cpp
+  )
 
-    execute_process(
-      COMMAND "${PYTHON_EXECUTABLE}" -c
-              "from __future__ import print_function\ntry: import numpy; print(numpy.get_include(), end='')\nexcept:pass\n"
-              OUTPUT_VARIABLE NumPy_INCLUDE_DIR)
-    execute_process(
-      COMMAND "${PYTHON_EXECUTABLE}" -c
-              "from __future__ import print_function\ntry: import numpy; print(numpy.__version__, end='')\nexcept:pass\n"
-      OUTPUT_VARIABLE NumPy_VERSION)
-    message("Found NumPy_INCLUDE_DIR=${NumPy_INCLUDE_DIR}, NumPy_VERSION=${NumPy_VERSION}")
-    include_directories(${NumPy_INCLUDE_DIR})
-    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/pyboostcvconverter/include)
-    list(APPEND SKSURGERYPCLCPP_PYTHON_SRCS pyboostcvconverter/src/pyboost_cv3_converter.cpp)
-  else()
-    list(APPEND SKSURGERYPCLCPP_PYTHON_SRCS sksLibPython.cpp) # Rename as appropriate.
+  if (WIN32)
+    if(NOT BUILD_SHARED)
+      add_definitions(-DBOOST_PYTHON_STATIC_LIB)
+      add_definitions(-DBOOST_NUMPY_STATIC_LIB)
+    endif()
   endif()
 
   link_libraries(${ALL_LIBRARIES})

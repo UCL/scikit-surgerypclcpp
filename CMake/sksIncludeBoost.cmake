@@ -20,11 +20,10 @@ if(BUILD_Boost OR BUILD_Python_Boost)
   #       so Boost is probably found by CMake's own FindBoost.cmake.
   #       which is an example of the 'module' mode.
   set(BOOST_LIBRARYDIR ${BOOST_ROOT}/lib)
-  set(BOOST_LIBRARYDIR ${BOOST_ROOT}/lib)
   set(Boost_LIBRARY_DIR_DEBUG ${BOOST_ROOT}/lib)
   set(Boost_LIBRARY_DIR_RELEASE ${BOOST_ROOT}/lib)
   set(BOOST_INCLUDEDIR ${BOOST_ROOT}/include)
-  #set(Boost_DEBUG ON)
+  set(Boost_DEBUG ON)
   set(Boost_NO_SYSTEM_PATHS ON)  # Notice: This enables us to turn off System Paths
   set(Boost_NO_BOOST_CMAKE ON)   # Notice: We can tell CMake not to assume this is the CMake-ified version of the boost project.
   if(BUILD_SHARED_LIBS)
@@ -45,7 +44,7 @@ if(BUILD_Boost OR BUILD_Python_Boost)
       add_definitions(-DBOOST_ALL_NO_LIB)                  # To stop auto-linking, which seems to be adding "lib" as library prefix in .obj files.
     endif()
     if(BUILD_SHARED)
-      list(APPEND ALL_COMPILE_OPTIONS -DBOOST_ALL_DYN_LINK)
+      add_definitions(-DBOOST_ALL_DYN_LINK)
     endif()
   endif()
   list(APPEND ALL_THIRD_PARTY_LIBRARIES ${Boost_LIBRARIES})

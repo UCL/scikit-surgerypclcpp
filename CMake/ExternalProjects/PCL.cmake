@@ -60,22 +60,22 @@ if(NOT DEFINED PCL_DIR)
     message("Building minimum PCL modules, as you want a Python build.")
 
     list(APPEND _additional_options
-      -DBUILD_2d:BOOL=OFF
+      -DBUILD_2d:BOOL=ON
       -DBUILD_common:BOOL=ON
-      -DBUILD_features:BOOL=OFF
-      -DBUILD_filters:BOOL=OFF
+      -DBUILD_features:BOOL=ON
+      -DBUILD_filters:BOOL=ON
       -DBUILD_geometry:BOOL=OFF
-      -DBUILD_io:BOOL=OFF
-      -DBUILD_kdtree:BOOL=OFF
+      -DBUILD_io:BOOL=ON
+      -DBUILD_kdtree:BOOL=ON
       -DBUILD_keypoints:BOOL=OFF
       -DBUILD_ml:BOOL=OFF
-      -DBUILD_octree:BOOL=OFF
+      -DBUILD_octree:BOOL=ON
       -DBUILD_outofcore:BOOL=OFF
       -DBUILD_people:BOOL=OFF
       -DBUILD_recognition:BOOL=OFF
-      -DBUILD_registration:BOOL=OFF
-      -DBUILD_sample_consensus:BOOL=OFF
-      -DBUILD_search:BOOL=OFF
+      -DBUILD_registration:BOOL=ON
+      -DBUILD_sample_consensus:BOOL=ON
+      -DBUILD_search:BOOL=ON
       -DBUILD_segmentation:BOOL=OFF
       -DBUILD_simulation:BOOL=OFF
       -DBUILD_stereo:BOOL=OFF
@@ -152,6 +152,7 @@ if(NOT DEFINED PCL_DIR)
       -DEIGEN_ROOT:PATH=${Eigen_DIR}
       -DEIGEN_INCLUDE_DIR:PATH=${Eigen_INCLUDE_DIR}
       -DFLANN_ROOT:PATH=${FLANN_DIR}
+      -DFLANN_USE_STATIC:BOOL=${_build_static}
       -DPCL_SHARED_LIBS:BOOL=${BUILD_SHARED_LIBS}
       -DOPENGL_glu_LIBRARY=${OPENGL_glu_LIBRARY}
       -DOPENGL_gl_LIBRARY=${OPENGL_gl_LIBRARY}

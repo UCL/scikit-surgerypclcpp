@@ -13,7 +13,8 @@
 =============================================================================*/
 #include <boost/python.hpp>
 #include <boost/python/exception_translator.hpp>
-#include "sksMyFunctions.h"
+#include <boost/python/numpy.hpp>
+#include "sksIterativeClosestPointWrapper.h"
 #include "sksException.h"
 
 #include <ostream>
@@ -33,7 +34,8 @@ void translate_exception(Exception const& e)
 // The name of the module should match that in CMakeLists.txt
 BOOST_PYTHON_MODULE(sksurgerypclpython)
 {
-  boost::python::def("my_first_add_function", sks::MyFirstAddFunction);
+  boost::python::numpy::initialize();
+  boost::python::def("iterative_closest_point", sks::IterativeClosestPointWrapper);
 }
 
 }  // end namespace sks
