@@ -25,6 +25,10 @@ if(NOT BUILDING_GUIS)
     sksLibPython.cpp
   )
 
+  if(NOT BUILD_SHARED)
+    add_definitions(-DBOOST_PYTHON_STATIC_LIB)
+  endif()
+    
   link_libraries(${ALL_LIBRARIES})
 
   PYTHON_ADD_MODULE(${SKSURGERYPCLCPP_PYTHON_MODULE_NAME} ${SKSURGERYPCLCPP_PYTHON_SRCS})
