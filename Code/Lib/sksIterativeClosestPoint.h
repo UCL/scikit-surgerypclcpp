@@ -23,9 +23,9 @@
 
 namespace sks {
 
-double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
-                             const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
-                             Eigen::Matrix4f& result);
+SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
+                                                       const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
+                                                       Eigen::Matrix4f& result);
 
 
 } // end namespace
