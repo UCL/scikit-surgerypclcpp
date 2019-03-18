@@ -22,7 +22,6 @@ if(BUILD_PCL)
   find_package(PCL REQUIRED)
   include_directories(${PCL_INCLUDE_DIRS})
   link_directories(${PCL_LIBRARY_DIRS})
-  link_directories(${FLANN_DIR}/${_library_sub_dir})
   add_definitions(${PCL_DEFINITIONS})
   list(APPEND ALL_THIRD_PARTY_LIBRARIES ${PCL_LIBRARIES})
 

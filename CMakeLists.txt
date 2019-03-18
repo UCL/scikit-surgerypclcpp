@@ -331,8 +331,8 @@ endif()
 ######################################################################
 # A few shortcuts for lists of libraries.
 ######################################################################
-set(SKSURGERYPCLCPP_LIBRARIES sksurgerypclcpp)
-set(ALL_LIBRARIES ${SKSURGERYPCLCPP_LIBRARIES} ${ALL_THIRD_PARTY_LIBRARIES} ${QT5_LINK_LIBRARIES})
+set(SKSURGERYPCLCPP_LIBRARY sksurgerypclcpp)
+set(ALL_LIBRARIES ${SKSURGERYPCLCPP_LIBRARY} ${ALL_THIRD_PARTY_LIBRARIES} ${QT5_LINK_LIBRARIES})
 
 
 ######################################################################
