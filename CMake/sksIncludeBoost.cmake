@@ -23,7 +23,7 @@ if(BUILD_Boost OR BUILD_Python_Boost)
   set(Boost_LIBRARY_DIR_DEBUG ${BOOST_ROOT}/lib)
   set(Boost_LIBRARY_DIR_RELEASE ${BOOST_ROOT}/lib)
   set(BOOST_INCLUDEDIR ${BOOST_ROOT}/include)
-  set(Boost_DEBUG ON)
+  #set(Boost_DEBUG ON)
   set(Boost_NO_SYSTEM_PATHS ON)  # Notice: This enables us to turn off System Paths
   set(Boost_NO_BOOST_CMAKE ON)   # Notice: We can tell CMake not to assume this is the CMake-ified version of the boost project.
   if(BUILD_SHARED_LIBS)
