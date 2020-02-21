@@ -35,6 +35,7 @@ void translate_exception(Exception const& e)
 BOOST_PYTHON_MODULE(sksurgerypclpython)
 {
   boost::python::numpy::initialize();
+  boost::python::register_exception_translator<Exception>(&translate_exception);
   boost::python::def("iterative_closest_point", sks::IterativeClosestPointWrapper);
 }
 
