@@ -66,10 +66,6 @@ double IterativeClosestPointWrapper(const np::ndarray& source,
   {
     sksExceptionThrow() << "source matrix does not have 3 columns";
   }
-  if (target.shape(0) != source.shape(0))
-  {
-    sksExceptionThrow() << "source matrix has " << source.shape(0) << " rows, but target matrix has " << target.shape(0) << " rows";
-  }
   if (target.get_dtype() != np::dtype::get_builtin<double>())
   {
     sksExceptionThrow() << "target matrix is not float type";
@@ -80,14 +76,20 @@ double IterativeClosestPointWrapper(const np::ndarray& source,
   pcl::PointCloud<pcl::PointXYZ>::Ptr sourceCloud (new pcl::PointCloud<pcl::PointXYZ>);
   sourceCloud->points.resize(numberOfPoints);
 
-  pcl::PointCloud<pcl::PointXYZ>::Ptr targetCloud (new pcl::PointCloud<pcl::PointXYZ>);
-  targetCloud->points.resize(numberOfPoints);
-
   for (unsigned long int i = 0; i < numberOfPoints; i++)
   {
     sourceCloud->points[i].x = boost::python::extract<double>(source[i][0]);
     sourceCloud->points[i].y = boost::python::extract<double>(source[i][1]);
     sourceCloud->points[i].z = boost::python::extract<double>(source[i][2]);
+  }
+
+  numberOfPoints = target.shape(0);
+
+  pcl::PointCloud<pcl::PointXYZ>::Ptr targetCloud (new pcl::PointCloud<pcl::PointXYZ>);
+  targetCloud->points.resize(numberOfPoints);
+
+  for (unsigned long int i = 0; i < numberOfPoints; i++)
+  {
     targetCloud->points[i].x = boost::python::extract<double>(target[i][0]);
     targetCloud->points[i].y = boost::python::extract<double>(target[i][1]);
     targetCloud->points[i].z = boost::python::extract<double>(target[i][2]);
