@@ -20,7 +20,9 @@ Features
 
 * Support for Python Wheels, thanks to [Matthew Brett's multibuild](https://github.com/matthew-brett/multibuild).
 * Iterative Closest Point (ICP) algorithm to register two N (rows) x 3 (columns, x, y, z) point sets.
-
+* Downsampling of point clouds via ```pcl::VoxelGrid``` filter.
+* Removal of outlier points from point clouds via ```pcl::StatisticalOutlierRemoval```.
+ 
 
 Installing
 ----------

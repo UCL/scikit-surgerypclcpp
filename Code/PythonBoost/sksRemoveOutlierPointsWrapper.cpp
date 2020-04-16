@@ -14,7 +14,7 @@
 
 #include "sksRemoveOutlierPointsWrapper.h"
 #include "sksExceptionMacro.h"
-#include "sksRemoveOutliersFromPointCloud.h"
+#include <sksRemoveOutliersFromPointCloud.h>
 #include <boost/python/extract.hpp>
 
 

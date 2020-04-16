@@ -15,11 +15,11 @@
 #ifndef sksIterativeClosestPoint_h
 #define sksIterativeClosestPoint_h
 
+#include <pcl/point_cloud.h>
 #include <pcl/point_types.h>
 #include <pcl/registration/icp.h>
 
 #include "sksWin32ExportHeader.h"
-#include <stdexcept>
 
 namespace sks {
 

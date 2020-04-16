@@ -14,8 +14,6 @@
 
 #include "sksDownSamplePointCloud.h"
 
-#include <pcl/filters/voxel_grid.h>
-
 namespace sks {
 
 //-----------------------------------------------------------------------------

@@ -1,0 +1,86 @@
+diff -ruN flann/src/cpp/CMakeLists.txt flann_patched/src/cpp/CMakeLists.txt
+--- flann/src/cpp/CMakeLists.txt	2016-08-05 00:20:50.000000000 +0100
++++ flann_patched/src/cpp/CMakeLists.txt	2020-05-15 10:12:20.000000000 +0100
+@@ -28,39 +28,39 @@
+     set_property(TARGET flann_cuda_s PROPERTY COMPILE_DEFINITIONS FLANN_STATIC)
+ endif()
+ 
+-if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_COMPILER_IS_GNUCC)
+-    add_library(flann_cpp SHARED "")
+-    set_target_properties(flann_cpp PROPERTIES LINKER_LANGUAGE CXX)
+-    target_link_libraries(flann_cpp -Wl,-whole-archive flann_cpp_s -Wl,-no-whole-archive)
+-
+-    if (BUILD_CUDA_LIB)
+-	    cuda_add_library(flann_cuda SHARED "")
+-        set_target_properties(flann_cuda PROPERTIES LINKER_LANGUAGE CXX)
+-        target_link_libraries(flann_cuda -Wl,-whole-archive flann_cuda_s -Wl,-no-whole-archive)
+-        set_property(TARGET flann_cpp_s PROPERTY COMPILE_DEFINITIONS FLANN_USE_CUDA)
+-    # 	target_link_libraries(flann_cuda cudpp_x86_64)
+-    endif()
+-else()
+-    add_library(flann_cpp SHARED ${CPP_SOURCES})
+-    if (BUILD_CUDA_LIB)
+-		cuda_add_library(flann_cuda SHARED ${CPP_SOURCES})
+-        set_property(TARGET flann_cpp PROPERTY COMPILE_DEFINITIONS FLANN_USE_CUDA)
+-    endif()
+-endif()
+-
+-set_target_properties(flann_cpp PROPERTIES
+-   VERSION ${FLANN_VERSION}
+-   SOVERSION ${FLANN_SOVERSION}
+-   DEFINE_SYMBOL FLANN_EXPORTS
+-)
+-
+-if (BUILD_CUDA_LIB)
+-    set_target_properties(flann_cuda PROPERTIES
+-       VERSION ${FLANN_VERSION}
+-       SOVERSION ${FLANN_SOVERSION}
+-       DEFINE_SYMBOL FLANN_EXPORTS
+-    )
+-endif()
++#if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_COMPILER_IS_GNUCC)
++#    add_library(flann_cpp SHARED "")
++#    set_target_properties(flann_cpp PROPERTIES LINKER_LANGUAGE CXX)
++#    target_link_libraries(flann_cpp -Wl,-whole-archive flann_cpp_s -Wl,-no-whole-archive)
++#
++#    if (BUILD_CUDA_LIB)
++#	    cuda_add_library(flann_cuda SHARED "")
++#        set_target_properties(flann_cuda PROPERTIES LINKER_LANGUAGE CXX)
++#        target_link_libraries(flann_cuda -Wl,-whole-archive flann_cuda_s -Wl,-no-whole-archive)
++#        set_property(TARGET flann_cpp_s PROPERTY COMPILE_DEFINITIONS FLANN_USE_CUDA)
++#    # 	target_link_libraries(flann_cuda cudpp_x86_64)
++#    endif()
++#else()
++#    add_library(flann_cpp SHARED ${CPP_SOURCES})
++#    if (BUILD_CUDA_LIB)
++#		cuda_add_library(flann_cuda SHARED ${CPP_SOURCES})
++#        set_property(TARGET flann_cpp PROPERTY COMPILE_DEFINITIONS FLANN_USE_CUDA)
++#    endif()
++#endif()
++
++#set_target_properties(flann_cpp PROPERTIES
++#   VERSION ${FLANN_VERSION}
++#   SOVERSION ${FLANN_SOVERSION}
++#   DEFINE_SYMBOL FLANN_EXPORTS
++#)
++
++#if (BUILD_CUDA_LIB)
++#    set_target_properties(flann_cuda PROPERTIES
++#       VERSION ${FLANN_VERSION}
++#       SOVERSION ${FLANN_SOVERSION}
++#       DEFINE_SYMBOL FLANN_EXPORTS
++#    )
++#endif()
+ 
+ 
+ if (USE_MPI AND HDF5_IS_PARALLEL)
+@@ -112,7 +112,8 @@
+ 
+ 
+ install (
+-    TARGETS flann_cpp flann_cpp_s
++#    TARGETS flann_cpp flann_cpp_s
++    TARGETS flann_cpp_s
+     RUNTIME DESTINATION bin
+     LIBRARY DESTINATION ${FLANN_LIB_INSTALL_DIR}
+     ARCHIVE DESTINATION ${FLANN_LIB_INSTALL_DIR}

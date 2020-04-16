@@ -15,7 +15,6 @@
 #include "catch.hpp"
 #include "sksCatchMain.h"
 #include <sksIterativeClosestPoint.h>
-
 #include <iostream>
 #include <vector>
 

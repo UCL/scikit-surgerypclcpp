@@ -46,6 +46,7 @@ if(BUILD_Boost OR BUILD_Python_Boost)
     if(BUILD_SHARED)
       add_definitions(-DBOOST_ALL_DYN_LINK)
     endif()
+    add_definitions(-DBoost_LIB_DIAGNOSTIC_DEFINITIONS)  # To get debug messages
   endif()
   list(APPEND ALL_THIRD_PARTY_LIBRARIES ${Boost_LIBRARIES})
   add_definitions(-DBUILD_Boost)

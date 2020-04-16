@@ -12,14 +12,12 @@
 
 =============================================================================*/
 
-#include <iostream>
-#include <pcl/io/pcd_io.h>
-#include <pcl/point_types.h>
-
 #include "catch.hpp"
 #include "sksCatchMain.h"
-
 #include "sksRemoveOutliersFromPointCloud.h"
+#include <pcl/io/pcd_io.h>
+#include <pcl/point_types.h>
+#include <iostream>
 
 TEST_CASE( "Remove Outliers Test", "[Outlier]" ) {
 

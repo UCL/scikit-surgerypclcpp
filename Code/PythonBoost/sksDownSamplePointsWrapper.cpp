@@ -14,8 +14,9 @@
 
 #include "sksDownSamplePointsWrapper.h"
 #include "sksExceptionMacro.h"
-#include <boost/python/extract.hpp>
 #include <sksDownSamplePointCloud.h>
+#include <boost/python/extract.hpp>
+
 
 namespace sks
 {

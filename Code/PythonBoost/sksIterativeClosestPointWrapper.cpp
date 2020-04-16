@@ -14,8 +14,9 @@
 
 #include "sksIterativeClosestPointWrapper.h"
 #include "sksExceptionMacro.h"
-#include <boost/python/extract.hpp>
 #include <sksIterativeClosestPoint.h>
+#include <boost/python/extract.hpp>
+
 
 namespace sks
 {
