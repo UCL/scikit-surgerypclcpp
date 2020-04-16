@@ -12,8 +12,8 @@
 
 =============================================================================*/
 
-#ifndef sksIterativeClosestPointWrapper_h
-#define sksIterativeClosestPointWrapper_h
+#ifndef sksDownSamplePointsWrapper_h
+#define sksDownSamplePointsWrapper_h
 
 #include <boost/python/numpy.hpp>
 #include "sksWin32ExportHeader.h"
@@ -23,9 +23,10 @@ namespace np = boost::python::numpy;
 namespace sks
 {
 
-SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPointWrapper(const np::ndarray& source,
-                                                              const np::ndarray& target,
-                                                              np::ndarray& result
-                                                              );
+SKSURGERYPCLCPP_WINEXPORT np::ndarray DownSamplePointsWrapper(const np::ndarray& input,
+                                                              float vx,
+                                                              float vy,
+                                                              float vz
+                                                             );
 }
 #endif
