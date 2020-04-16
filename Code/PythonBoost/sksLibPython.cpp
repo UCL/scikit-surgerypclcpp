@@ -16,6 +16,7 @@
 #include <boost/python/numpy.hpp>
 #include "sksIterativeClosestPointWrapper.h"
 #include "sksDownSamplePointsWrapper.h"
+#include "sksRemoveOutlierPointsWrapper.h"
 #include "sksException.h"
 
 #include <ostream>
@@ -39,6 +40,7 @@ BOOST_PYTHON_MODULE(sksurgerypclpython)
   boost::python::register_exception_translator<Exception>(&translate_exception);
   boost::python::def("iterative_closest_point", sks::IterativeClosestPointWrapper);
   boost::python::def("down_sample_points", sks::DownSamplePointsWrapper);
+  boost::python::def("remove_outlier_points", sks::RemoveOutlierPointsWrapper);
 }
 
 }  // end namespace sks
