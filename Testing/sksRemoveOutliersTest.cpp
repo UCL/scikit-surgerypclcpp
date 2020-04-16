@@ -19,6 +19,7 @@
 #include "catch.hpp"
 #include "sksCatchMain.h"
 
+#include "sksRemoveOutliersFromPointCloud.h"
 
 TEST_CASE( "Remove Outliers Test", "[Outlier]" ) {
 
@@ -31,11 +32,13 @@ TEST_CASE( "Remove Outliers Test", "[Outlier]" ) {
   std::cerr << "PointCloud before filtering: " << cloud->width * cloud->height
        << " data points (" << pcl::getFieldsList (*cloud) << ")." << std::endl;
 
+  cloud_filtered = sks::RemoveOutliersFromPointCloud(cloud, 50, 1.0);
+
   std::cerr << "PointCloud after filtering: " << cloud_filtered->width * cloud_filtered->height
        << " data points (" << pcl::getFieldsList (*cloud_filtered) << ")." << std::endl;
 
   pcl::io::savePCDFileASCII (sks::argv[2], *cloud_filtered);
   REQUIRE(cloud->size() == 460400);
-  REQUIRE(cloud_filtered->size() == 41049);
+  REQUIRE(cloud_filtered->size() == 451410);
 }
 
