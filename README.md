@@ -2,8 +2,9 @@ scikit-surgerypclcpp
 ====================
 
 [![Build Status](https://travis-ci.com/UCL/scikit-surgerypclcpp.svg?branch=master)](https://travis-ci.com/UCL/scikit-surgerypclcpp)
-[![Build status](https://ci.appveyor.com/api/projects/status/yt3gf13onu9q5wx5/branch/master?svg=true
-)](https://ci.appveyor.com/project/MattClarkson/scikit-surgerypclcpp)
+[![Build status](https://ci.appveyor.com/api/projects/status/yt3gf13onu9q5wx5/branch/master?svg=true)](https://ci.appveyor.com/project/MattClarkson/scikit-surgerypclcpp/branch/master)
+
+
 
 
 scikit-surgerypclcpp implements image guided surgery algorithms, using [PCL](http://pointclouds.org/), in C++ and wrapped in Python.
