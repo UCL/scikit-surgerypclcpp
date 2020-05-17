@@ -25,7 +25,6 @@ set(TEST_CASES
 foreach(_test_case ${TEST_CASES})
   add_executable(${_test_case} ${_test_case}.cpp sksCatchMain.cpp)
   target_link_libraries(${_test_case} ${SKSURGERYPCLCPP_LIBRARY})
-  target_link_libraries(${_test_case} ${PCL_LIBRARIES})
 endforeach()
 
 

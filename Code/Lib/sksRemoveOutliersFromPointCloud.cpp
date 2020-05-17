@@ -13,6 +13,7 @@
 =============================================================================*/
 
 #include "sksRemoveOutliersFromPointCloud.h"
+#include <pcl/filters/statistical_outlier_removal.h>
 
 namespace sks {
 

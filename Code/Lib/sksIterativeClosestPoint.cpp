@@ -13,6 +13,7 @@
 =============================================================================*/
 
 #include "sksIterativeClosestPoint.h"
+#include <pcl/registration/icp.h>
 
 namespace sks {
 
