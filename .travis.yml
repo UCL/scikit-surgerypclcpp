@@ -18,7 +18,7 @@
 
 language: python
 sudo: required
-dist: xenial
+dist: trusty
 services: docker
 
 # To Do: Where to put these?
