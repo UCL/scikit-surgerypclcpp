@@ -106,8 +106,8 @@ test_script:
     pwd
     cd SKSURGERYPCLCPP-build
     pwd
-    if ($LastExitCode -ne 0) {throw $LastExitCode}
-
+    echo "Not testing C++ for now."
+    
 after_test:
 - ps: |
     echo --------------------------------------------------------------------------------
