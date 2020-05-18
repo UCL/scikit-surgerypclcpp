@@ -106,7 +106,7 @@ test_script:
     pwd
     cd SKSURGERYPCLCPP-build
     pwd
-    ctest -C ${Env:CONFIGURATION}
+ #   ctest -C ${Env:CONFIGURATION}
     if ($LastExitCode -ne 0) {throw $LastExitCode}
 
 after_test:

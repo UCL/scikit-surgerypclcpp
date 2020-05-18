@@ -23,7 +23,7 @@ function cmake_build {
   cmake -DSKSURGERYPCLCPP_PYTHON_VERSION:STRING=${PYTHON_VERSION} -DBUILD_SUPERBUILD:BOOL=ON -DBUILD_TESTING:BOOL=OFF ..
   make -j 2
   cd SKSURGERYPCLCPP-build
-  ctest .
+#  ctest .
   cd ../../
   echo "Finished travis_cmake_build.sh"
 }
