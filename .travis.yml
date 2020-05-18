@@ -16,8 +16,7 @@
 #        and : https://github.com/matthew-brett/multibuild
 #        and : https://github.com/thompson318/ndicapi-wheels
 
-language: python
-sudo: required
+language: generic
 dist: xenial
 services: docker
 
