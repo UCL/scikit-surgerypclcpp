@@ -24,7 +24,7 @@ if(DEFINED FLANN_DIR AND NOT EXISTS ${FLANN_DIR})
   message(FATAL_ERROR "FLANN_DIR variable is defined but corresponds to non-existing directory \"${FLANN_DIR}\".")
 endif()
 
-set(version "1.9.1")
+set(version "8c06c5b48c")
 set(location "https://github.com/mariusmuja/flann.git")
 mpMacroDefineExternalProjectVariables(FLANN ${version} ${location})
 set(proj_DEPENDENCIES )
