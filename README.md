@@ -34,13 +34,15 @@ As of 2020-05-19, there are a few build issues, that are proving problematic, an
 have limited time to resolve them.
 
 * C++ tests are turned off, so currently the CI builds build the python wheel and then runs python unit tests.
-* To turn C++ tests on, add the ctest commands into ```travis_cmake_build.sh``` and ```appveyor.yml``` and to turn ```-DBUILD_TESTING:BOOL=ON```
+* To turn C++ tests on, add the ctest commands into ```travis_cmake_build.sh``` and ```appveyor.yml``` and turn ```-DBUILD_TESTING:BOOL=ON```
 * If you turn C++ tests on, Mac should work fine, Linux has problems liking to LZ4 due to FLANN 1.9.1, and on Windows, we get multiply defined symbols due to Boost.
 * Python unit testing was seg-faulting on Linux due to using collections to gather unit tests, so we are currently calling each test one at a time.
-* So, if you want to add a python unit test, you need to add to ```config.sh```
+* So, if you want to add a python unit test, you need to add to ```config.sh``` for each new pytest file.
 
 The long-term solution may be to work more closely with the PCL build team. So, change the MetaBuild to use PCL's docker image on
 Linux, and mimic their build environment on Windows/Mac, rather than having our own. 
+Most of the build issues appear to be due to templating more than anything, so a more thorough understanding
+there would help.
 
 
 Installing
