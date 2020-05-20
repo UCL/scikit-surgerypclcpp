@@ -21,10 +21,6 @@ if(NOT BUILDING_GUIS)
   set(SKSURGERYPCLCPP_PYTHON_SRCS)
 
   list(APPEND SKSURGERYPCLCPP_PYTHON_SRCS
-    ../Lib/sksException.cpp
-    ../Lib/sksIterativeClosestPoint.cpp
-    ../Lib/sksDownSamplePointCloud.cpp
-    ../Lib/sksRemoveOutliersFromPointCloud.cpp
     sksIterativeClosestPointWrapper.cpp
     sksDownSamplePointsWrapper.cpp
     sksRemoveOutlierPointsWrapper.cpp
@@ -38,9 +34,8 @@ if(NOT BUILDING_GUIS)
     endif()
   endif()
 
-  link_libraries(${ALL_THIRD_PARTY_LIBRARIES})
-
   PYTHON_ADD_MODULE(${SKSURGERYPCLCPP_PYTHON_MODULE_NAME} ${SKSURGERYPCLCPP_PYTHON_SRCS})
+  target_link_libraries(${SKSURGERYPCLCPP_PYTHON_MODULE_NAME} ${ALL_LIBRARIES})
   if(APPLE)
     set_target_properties(${SKSURGERYPCLCPP_PYTHON_MODULE_NAME} PROPERTIES LINK_FLAGS "-undefined dynamic_lookup")
   endif()
