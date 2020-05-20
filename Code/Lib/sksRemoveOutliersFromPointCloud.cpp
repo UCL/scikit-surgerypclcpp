@@ -14,6 +14,7 @@
 
 #include "sksRemoveOutliersFromPointCloud.h"
 #include <pcl/filters/statistical_outlier_removal.h>
+#include <pcl/search/impl/organized.hpp>
 
 namespace sks {
 
