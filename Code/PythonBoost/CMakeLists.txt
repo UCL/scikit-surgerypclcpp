@@ -21,11 +21,12 @@ if(NOT BUILDING_GUIS)
   set(SKSURGERYPCLCPP_PYTHON_SRCS)
 
   list(APPEND SKSURGERYPCLCPP_PYTHON_SRCS
+    ../Lib/sksException.cpp
     ../Lib/sksIterativeClosestPoint.cpp
-    sksIterativeClosestPointWrapper.cpp
     ../Lib/sksDownSamplePointCloud.cpp
-    sksDownSamplePointsWrapper.cpp
     ../Lib/sksRemoveOutliersFromPointCloud.cpp
+    sksIterativeClosestPointWrapper.cpp
+    sksDownSamplePointsWrapper.cpp
     sksRemoveOutlierPointsWrapper.cpp
     sksLibPython.cpp
   )
