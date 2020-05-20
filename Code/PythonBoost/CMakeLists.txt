@@ -21,8 +21,11 @@ if(NOT BUILDING_GUIS)
   set(SKSURGERYPCLCPP_PYTHON_SRCS)
 
   list(APPEND SKSURGERYPCLCPP_PYTHON_SRCS
+    ../Lib/sksIterativeClosestPoint.cpp
     sksIterativeClosestPointWrapper.cpp
+    ../Lib/sksDownSamplePointCloud.cpp
     sksDownSamplePointsWrapper.cpp
+    ../Lib/sksRemoveOutliersFromPointCloud.cpp
     sksRemoveOutlierPointsWrapper.cpp
     sksLibPython.cpp
   )
@@ -34,7 +37,7 @@ if(NOT BUILDING_GUIS)
     endif()
   endif()
 
-  link_libraries(${ALL_LIBRARIES})
+  link_libraries(${ALL_THIRD_PARTY_LIBRARIES})
 
   PYTHON_ADD_MODULE(${SKSURGERYPCLCPP_PYTHON_MODULE_NAME} ${SKSURGERYPCLCPP_PYTHON_SRCS})
   if(APPLE)
