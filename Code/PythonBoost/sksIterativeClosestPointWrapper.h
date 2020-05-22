@@ -16,6 +16,7 @@
 #define sksIterativeClosestPointWrapper_h
 
 #include <boost/python/numpy.hpp>
+#include <sksIterativeClosestPoint.h>
 #include "sksWin32ExportHeader.h"
 
 namespace np = boost::python::numpy;

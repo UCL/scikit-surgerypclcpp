@@ -14,7 +14,6 @@
 
 #include "sksIterativeClosestPointWrapper.h"
 #include "sksExceptionMacro.h"
-#include <sksIterativeClosestPoint.h>
 #include <boost/python/extract.hpp>
 
 
