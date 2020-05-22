@@ -35,6 +35,7 @@ if(BUILD_PCL)
   if(_pcl_io_ply_LIBRARY)
     list(APPEND ALL_THIRD_PARTY_LIBRARIES ${_pcl_io_ply_LIBRARY})
   endif()
+
   add_definitions(-DBUILD_PCL)
   list(APPEND ADDITIONAL_SEARCH_PATHS "${PCL_LIBRARY_DIRS}/../${_library_sub_dir}")
   list(APPEND ADDITIONAL_SEARCH_PATHS "${FLANN_DIR}/${_library_sub_dir}")
