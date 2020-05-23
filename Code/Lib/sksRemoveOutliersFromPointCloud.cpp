@@ -13,7 +13,7 @@
 =============================================================================*/
 
 #include "sksRemoveOutliersFromPointCloud.h"
-#include <pcl/filters/radius_outlier_removal.h>
+#include <pcl/filters/statistical_outlier_removal.h>
 
 namespace sks {
 
@@ -23,11 +23,11 @@ const pcl::PointCloud<pcl::PointXYZ>::Ptr RemoveOutliersFromPointCloud(const pcl
 {
   pcl::PointCloud<pcl::PointXYZ>::Ptr output(new pcl::PointCloud<pcl::PointXYZ>);
 
-  pcl::RadiusOutlierRemoval<pcl::PointXYZ> ror;
-  ror.setInputCloud(input);
-  ror.setRadiusSearch(meanK);
-  ror.setMinNeighborsInRadius(stdDev);
-  ror.filter(*output);
+  pcl::StatisticalOutlierRemoval<pcl::PointXYZ> sor;
+  sor.setInputCloud(input);
+  sor.setMeanK(meanK);
+  sor.setStddevMulThresh(stdDev);
+  sor.filter(*output);
 
   return output;
 }
