@@ -35,7 +35,7 @@ have limited time to resolve them.
 
 * C++ tests are turned off, so currently the CI builds build the python wheel and then runs python unit tests.
 * To turn C++ tests on, add the ctest commands into ```travis_cmake_build.sh``` and ```appveyor.yml``` and turn ```-DBUILD_TESTING:BOOL=ON```
-* If you turn C++ tests on, Mac should work fine, Linux has problems liking to LZ4 due to FLANN 1.9.1, and on Windows, we get multiply defined symbols due to Boost.
+* If you turn C++ tests on, Mac should work fine, Linux has problems liking to LZ4 due to FLANN 1.9.1 so it was downgraded to 1.8.1, and on Windows, we get multiply defined symbols due to Boost.
 * Python unit testing was seg-faulting on Linux due to using collections to gather unit tests, so we are currently calling each test one at a time.
 * So, if you want to add a python unit test, you need to add to ```config.sh``` for each new pytest file.
 
