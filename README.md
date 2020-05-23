@@ -30,19 +30,18 @@ to see header files with the method signatures.
 Caveat
 ------
 
-As of 2020-05-19, there are a few build issues, that are proving problematic, and we
+As of 2020-05-19 and Issue 2, there are a few build issues, that are proving problematic, and we
 have limited time to resolve them.
 
 * C++ tests are turned off, so currently the CI builds build the python wheel and then runs python unit tests.
-* To turn C++ tests on, add the ctest commands into ```travis_cmake_build.sh``` and ```appveyor.yml``` and turn ```-DBUILD_TESTING:BOOL=ON```
-* If you turn C++ tests on, Mac should work fine, Linux has problems liking to LZ4 due to FLANN 1.9.1 so it was downgraded to 1.8.1, and on Windows, we get multiply defined symbols due to Boost.
-* Python unit testing was seg-faulting on Linux due to using collections to gather unit tests, so we are currently calling each test one at a time.
-* So, if you want to add a python unit test, you need to add to ```config.sh``` for each new pytest file.
+* To turn C++ tests on for CI, add the ctest commands into ```travis_cmake_build.sh``` and ```appveyor.yml``` and turn ```-DBUILD_TESTING:BOOL=ON```
+* If you turn C++ tests on in the CI build, Mac should work fine, Linux has problems liking to LZ4 due to FLANN 1.9.1 so it was downgraded to 1.8.1, and on Windows, we get multiply defined symbols due to Boost. Good luck fixing Windows/Linux.
+* C++ tests will still default to ```-DBUILD_TESTING:BOOL=ON``` in your local build.
+* There was problems with all the templating, so PCL_NO_PRECOMPILE was set in the PCL build and in this project build, and compilation and python unit testing was successful.
 
-The long-term solution may be to work more closely with the PCL build team. So, change the MetaBuild to use PCL's docker image on
-Linux, and mimic their build environment on Windows/Mac, rather than having our own. 
-Most of the build issues appear to be due to templating more than anything, so a more thorough understanding
-there would help.
+So, as of 2020-05-23, Issue 2 was closed, with ICP, Voxel Grid downsampling and Statistical Outlier Removal working.
+So, unless someone has made changes to the build, and fixed the above points, (at which point they should edit this README file
+and remove this caveat), then you should assume this caveat is still valid.
 
 
 Installing
