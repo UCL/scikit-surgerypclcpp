@@ -28,6 +28,5 @@ SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPointWrapper(const np::ndarray&
                                                               const np::ndarray& target,
                                                               np::ndarray& result
                                                               );
-
 }
 #endif

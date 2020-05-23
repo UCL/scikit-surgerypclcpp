@@ -23,6 +23,7 @@ if(BUILD_PCL)
   include_directories(${PCL_INCLUDE_DIRS})
   link_directories(${PCL_LIBRARY_DIRS})
   add_definitions(${PCL_DEFINITIONS})
+  add_definitions(-DPCL_NO_PRECOMPILE)
   list(APPEND ALL_THIRD_PARTY_LIBRARIES ${PCL_LIBRARIES})
 
   # This appears to be missing from the list of PCL_LIBRARIES,

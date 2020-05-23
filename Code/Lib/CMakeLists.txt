@@ -19,6 +19,8 @@ set(SKSURGERYPCLCPP_LIBRARY_SRCS
   sksMyFunctions.cpp
   sksException.cpp
   sksIterativeClosestPoint.cpp
+  sksDownSamplePointCloud.cpp
+  sksRemoveOutliersFromPointCloud.cpp
 )
 
 set(SKSURGERYPCLCPP_LIBRARY_HDRS

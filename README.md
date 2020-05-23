@@ -2,8 +2,9 @@ scikit-surgerypclcpp
 ====================
 
 [![Build Status](https://travis-ci.com/UCL/scikit-surgerypclcpp.svg?branch=master)](https://travis-ci.com/UCL/scikit-surgerypclcpp)
-[![Build status](https://ci.appveyor.com/api/projects/status/yt3gf13onu9q5wx5/branch/master?svg=true
-)](https://ci.appveyor.com/project/MattClarkson/scikit-surgerypclcpp)
+[![Build status](https://ci.appveyor.com/api/projects/status/yt3gf13onu9q5wx5/branch/master?svg=true)](https://ci.appveyor.com/project/MattClarkson/scikit-surgerypclcpp/branch/master)
+
+
 
 
 scikit-surgerypclcpp implements image guided surgery algorithms, using [PCL](http://pointclouds.org/), in C++ and wrapped in Python.
@@ -19,6 +20,28 @@ Features
 
 * Support for Python Wheels, thanks to [Matthew Brett's multibuild](https://github.com/matthew-brett/multibuild).
 * Iterative Closest Point (ICP) algorithm to register two N (rows) x 3 (columns, x, y, z) point sets.
+* Downsampling of point clouds via ```pcl::VoxelGrid``` filter.
+* Removal of outlier points from point clouds via ```pcl::StatisticalOutlierRemoval```.
+
+Look in ```Code/PythonBoost/sksLibPython.cpp``` for python method names, and in the containing folder,
+to see header files with the method signatures.
+
+
+Caveat
+------
+
+As of 2020-05-19 and Issue 2, there are a few build issues, that are proving problematic, and we
+have limited time to resolve them.
+
+* C++ tests are turned off, so currently the CI builds build the python wheel and then runs python unit tests.
+* To turn C++ tests on for CI, add the ctest commands into ```travis_cmake_build.sh``` and ```appveyor.yml``` and turn ```-DBUILD_TESTING:BOOL=ON```
+* If you turn C++ tests on in the CI build, Mac should work fine, Linux has problems liking to LZ4 due to FLANN 1.9.1 so it was downgraded to 1.8.1, and on Windows, we get multiply defined symbols due to Boost. Good luck fixing Windows/Linux.
+* C++ tests will still default to ```-DBUILD_TESTING:BOOL=ON``` in your local build.
+* There was problems with all the templating, so PCL_NO_PRECOMPILE was set in the PCL build and in this project build, and compilation and python unit testing was successful.
+
+So, as of 2020-05-23, Issue 2 was closed, with ICP, Voxel Grid downsampling and Statistical Outlier Removal working.
+So, unless someone has made changes to the build, and fixed the above points, (at which point they should edit this README file
+and remove this caveat), then you should assume this caveat is still valid.
 
 
 Installing

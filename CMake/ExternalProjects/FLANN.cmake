@@ -24,8 +24,14 @@ if(DEFINED FLANN_DIR AND NOT EXISTS ${FLANN_DIR})
   message(FATAL_ERROR "FLANN_DIR variable is defined but corresponds to non-existing directory \"${FLANN_DIR}\".")
 endif()
 
-set(version "1.9.1")
-set(location "${NIFTK_EP_TARBALL_LOCATION}/flann-${version}.tar.gz")
+if (UNIX AND NOT APPLE)
+  set(version "1.8.1-src")
+else()
+  set(version "1.9.1")
+endif()
+
+
+set(location "https://github.com/mariusmuja/flann.git")
 mpMacroDefineExternalProjectVariables(FLANN ${version} ${location})
 set(proj_DEPENDENCIES )
 
@@ -37,8 +43,9 @@ if(NOT DEFINED FLANN_DIR)
     SOURCE_DIR ${proj_SOURCE}
     BINARY_DIR ${proj_BUILD}
     INSTALL_DIR ${proj_INSTALL}
-    URL ${proj_LOCATION}
-    URL_MD5 ${proj_CHECKSUM}
+    GIT_REPOSITORY ${proj_LOCATION}
+    GIT_TAG ${proj_VERSION}
+    UPDATE_COMMAND ${GIT_EXECUTABLE} checkout ${proj_VERSION}
     CMAKE_GENERATOR ${gen}
     CMAKE_ARGS
       ${EP_COMMON_ARGS}
