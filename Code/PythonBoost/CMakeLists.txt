@@ -23,7 +23,7 @@ if(NOT BUILDING_GUIS)
   list(APPEND SKSURGERYPCLCPP_PYTHON_SRCS
     sksIterativeClosestPointWrapper.cpp
     sksDownSamplePointsWrapper.cpp
-    #sksRemoveOutlierPointsWrapper.cpp
+    sksRemoveOutlierPointsWrapper.cpp
     sksLibPython.cpp
   )
 
