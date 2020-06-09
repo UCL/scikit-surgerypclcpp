@@ -17,18 +17,19 @@
 
 using namespace std;
 
-auto icp_docstring = R"(
+auto icp_docstring = R"mydelimiter(
     Run Iterative Closest Point algorithm.
-
+    
     :param source: Source pointcloud
     :type source: np.ndarray
     :param target: Target point cloud
     :type target: np.ndarray
     :return: 4x4 Transform matrix
-    )";
+    )mydelimiter";
 
-auto downsample_docstring = R"(
+auto downsample_docstring = R"mydelimiter(
     Downsample point cloud.
+
     :param input: Input pointcloud
     :type input: np.ndarray
     :param vx: X  voxel size (metres)
@@ -39,10 +40,11 @@ auto downsample_docstring = R"(
     :type vz: float
     :return: Modified point cloud
     :rtype: np.ndarray
-    )";
+    )mydelimiter";
 
-auto remove_outlier_docstring = R"(
+auto remove_outlier_docstring = R"mydelimiter(
     Remove outliers from point cloud.
+
     :param input: Input pointcloud
     :type input: np.ndarray
     :param meanK: Number of points to use for mean distance estimation
@@ -51,6 +53,6 @@ auto remove_outlier_docstring = R"(
     mean +/- stdDev are considred outliers.
     :return: Output pointcloud
     :rtype: np.darray
-    )";
+    )mydelimiter";
 
 #endif
