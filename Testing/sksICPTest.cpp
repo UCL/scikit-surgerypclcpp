@@ -47,7 +47,13 @@ TEST_CASE( "Translation test", "[ICP]" ) {
 
   Eigen::Matrix4f finalTransform;
 
-  double residual = sks::IterativeClosestPoint(sourceCloud, targetCloud, finalTransform);
+  double residual = sks::IterativeClosestPoint(sourceCloud,
+                                               targetCloud,
+                                               10,
+                                               std::sqrt (std::numeric_limits<double>::max ()),
+                                               -std::numeric_limits<double>::max (),
+                                               0,
+                                               finalTransform);
   std::cout << "ICP residual=" << residual << std::endl;
   std::cout << "ICP matrix=" << finalTransform << std::endl;
   REQUIRE(residual < 0.00001);

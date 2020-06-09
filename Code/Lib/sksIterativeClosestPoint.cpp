@@ -19,11 +19,21 @@ namespace sks {
 //-----------------------------------------------------------------------------
 double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
                              const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
-                             Eigen::Matrix4f& result)
+                             const unsigned int maxNumberOfIterations,
+                             const float maxCorrespondenceDistance,
+                             const float transformationEpsilon,
+                             const float fitnessEpsilon,
+                             Eigen::Matrix4f& result
+                             )
 {
   pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
   icp.setInputSource(source);
   icp.setInputTarget(target);
+  icp.setMaximumIterations(maxNumberOfIterations);
+  icp.setMaxCorrespondenceDistance(maxCorrespondenceDistance);
+  icp.setTransformationEpsilon(transformationEpsilon);
+  icp.setEuclideanFitnessEpsilon(fitnessEpsilon);
+
   pcl::PointCloud<pcl::PointXYZ> Final;
   icp.align(Final);
 

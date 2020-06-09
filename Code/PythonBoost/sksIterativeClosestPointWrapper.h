@@ -26,6 +26,10 @@ namespace sks
 
 SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPointWrapper(const np::ndarray& source,
                                                               const np::ndarray& target,
+                                                              const unsigned int maxNumberOfIterations,
+                                                              const float maxCorrespondenceDistance,
+                                                              const float transformationEpsilon,
+                                                              const float fitnessEpsilon,
                                                               np::ndarray& result
                                                               );
 }
