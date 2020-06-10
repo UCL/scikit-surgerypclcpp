@@ -21,6 +21,7 @@ if(NOT BUILDING_GUIS)
   set(SKSURGERYPCLCPP_PYTHON_SRCS)
 
   list(APPEND SKSURGERYPCLCPP_PYTHON_SRCS
+    sksConversionUtils.cpp
     sksIterativeClosestPointWrapper.cpp
     sksDownSamplePointsWrapper.cpp
     sksRemoveOutlierPointsWrapper.cpp
