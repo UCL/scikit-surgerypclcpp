@@ -25,6 +25,8 @@ if(NOT BUILDING_GUIS)
     sksIterativeClosestPointWrapper.cpp
     sksDownSamplePointsWrapper.cpp
     sksRemoveOutlierPointsWrapper.cpp
+    sksPassThroughFilterWrapper.cpp
+    sksRadiusRemovalFilterWrapper.cpp
     sksLibPython.cpp
   )
 
