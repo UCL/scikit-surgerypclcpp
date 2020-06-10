@@ -53,9 +53,26 @@ TEST_CASE( "Translation test", "[ICP]" ) {
                                                std::sqrt (std::numeric_limits<double>::max ()),
                                                -std::numeric_limits<double>::max (),
                                                0,
+                                               false,
                                                finalTransform);
   std::cout << "ICP residual=" << residual << std::endl;
   std::cout << "ICP matrix=" << finalTransform << std::endl;
+  REQUIRE(residual < 0.00001);
+  REQUIRE(finalTransform(0, 3) == 1);
+  REQUIRE(finalTransform(1, 3) == 1);
+  REQUIRE(finalTransform(2, 3) == 1);
+
+  residual = sks::IterativeClosestPoint(sourceCloud,
+                                        targetCloud,
+                                        10,
+                                        std::sqrt (std::numeric_limits<double>::max ()),
+                                        -std::numeric_limits<double>::max (),
+                                        0,
+                                        false,
+                                        finalTransform);
+
+  std::cout << "LMICP residual=" << residual << std::endl;
+  std::cout << "LMICP matrix=" << finalTransform << std::endl;
   REQUIRE(residual < 0.00001);
   REQUIRE(finalTransform(0, 3) == 1);
   REQUIRE(finalTransform(1, 3) == 1);

@@ -14,6 +14,7 @@
 
 #include "sksIterativeClosestPointWrapper.h"
 #include "sksExceptionMacro.h"
+#include <sksIterativeClosestPoint.h>
 #include <boost/python/extract.hpp>
 
 
@@ -27,6 +28,7 @@ double IterativeClosestPointWrapper(const np::ndarray& source,
                                     float maxCorrespondenceDistance,
                                     float transformationEpsilon,
                                     float fitnessEpsilon,
+                                    bool useLM,
                                     np::ndarray& result
                                    )
 {
@@ -107,6 +109,7 @@ double IterativeClosestPointWrapper(const np::ndarray& source,
                                                maxCorrespondenceDistance,
                                                transformationEpsilon,
                                                fitnessEpsilon,
+                                               useLM,
                                                finalTransform);
 
   double *resultPtr = reinterpret_cast<double*>(result.get_data());

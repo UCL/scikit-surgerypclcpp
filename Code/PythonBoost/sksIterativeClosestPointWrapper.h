@@ -16,7 +16,6 @@
 #define sksIterativeClosestPointWrapper_h
 
 #include <boost/python/numpy.hpp>
-#include <sksIterativeClosestPoint.h>
 #include "sksWin32ExportHeader.h"
 
 namespace np = boost::python::numpy;
@@ -30,6 +29,7 @@ SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPointWrapper(const np::ndarray&
                                                               float maxCorrespondenceDistance,
                                                               float transformationEpsilon,
                                                               float fitnessEpsilon,
+                                                              bool useLM,
                                                               np::ndarray& result
                                                               );
 }

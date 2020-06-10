@@ -15,7 +15,11 @@ def test_fran_cut_icp():
     target_points_file = 'Testing/Data/SurfaceBasedRegistrationData/fran_cut.txt'
     target_points = np.loadtxt(target_points_file)
     result = np.eye(4)
-    residual = sks.iterative_closest_point(source_points, target_points, 10, sys.float_info.max, -sys.float_info.max, 0, result)
+    residual = sks.iterative_closest_point(source_points, target_points, 10, sys.float_info.max, -sys.float_info.max, 0, False, result)
+    six.print_("Residual=" + str(residual))
+    six.print_("Matrix=" + str(result))
+    assert residual < 0.1
+    residual = sks.iterative_closest_point(source_points, target_points, 10, sys.float_info.max, -sys.float_info.max, 0, True, result)
     six.print_("Residual=" + str(residual))
     six.print_("Matrix=" + str(result))
     assert residual < 0.1
