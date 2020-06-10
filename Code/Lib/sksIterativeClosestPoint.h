@@ -25,10 +25,10 @@ namespace sks {
 
 SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
                                                        const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
-                                                       const unsigned int maxNumberOfIterations,
-                                                       const float maxCorrespondenceDistance,
-                                                       const float transformationEpsilon,
-                                                       const float fitnessEpsilon,
+                                                       unsigned int maxNumberOfIterations,
+                                                       float maxCorrespondenceDistance,
+                                                       float transformationEpsilon,
+                                                       float fitnessEpsilon,
                                                        Eigen::Matrix4f& result
                                                        );
 
