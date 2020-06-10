@@ -19,6 +19,7 @@
 #include "sksRemoveOutlierPointsWrapper.h"
 #include "sksPassThroughFilterWrapper.h"
 #include "sksRadiusRemovalFilterWrapper.h"
+#include "sksFeatureMatchRANSACWrapper.h"
 #include "sksException.h"
 #include "python_docstrings.h"
 
@@ -46,6 +47,7 @@ BOOST_PYTHON_MODULE(sksurgerypclpython)
   boost::python::def("remove_outlier_points", sks::RemoveOutlierPointsWrapper, remove_outlier_docstring);
   boost::python::def("pass_through_filter", sks::PassThroughFilterWrapper);
   boost::python::def("radius_removal_filter", sks::RadiusRemovalFilterWrapper);
+  boost::python::def("feature_match_ransac", sks::FeatureMatchRANSACWrapper);
 }
 
 }  // end namespace sks

@@ -28,6 +28,12 @@ namespace sks
   pcl::PointCloud<pcl::PointXYZ>::Ptr ConvertInputToPointCloud(const np::ndarray& input);
 
   np::ndarray ConvertPointCloudToNumpy(pcl::PointCloud<pcl::PointXYZ>::Ptr cloud);
+
+  void ConvertPointCloudToNumpy(const pcl::PointCloud<pcl::PointXYZ>::Ptr input, np::ndarray& output);
+
+  void CheckInputsForRegistration(const np::ndarray& source, const np::ndarray& target, const np::ndarray& transformedSource, np::ndarray& result);
+
+  void ConvertEigenToNumpy(const Eigen::Matrix4f& input, np::ndarray& output);
 }
 
 #endif
