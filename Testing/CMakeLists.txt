@@ -46,11 +46,12 @@ endif()
 # Dont forget its:  add_test(<test name (globally unique) > <exe name> <argument1> <argument2>
 ##################################################################################################
 
-#add_test(1File ${EXECUTABLE_OUTPUT_PATH}/sksCommandLineArgsTest ${DATA_DIR}/input.txt)
-#add_test(ICP ${EXECUTABLE_OUTPUT_PATH}/sksICPTest)
-#add_test(DownSample ${EXECUTABLE_OUTPUT_PATH}/sksDownSampleTest ${DATA_DIR}/SurfaceFiltering/table_scene_lms400.pcd ${TMP_DIR}/table_scene_lms400_downsampled.pcd)
-#add_test(RemoveOutliers ${EXECUTABLE_OUTPUT_PATH}/sksRemoveOutliersTest ${DATA_DIR}/SurfaceFiltering/table_scene_lms400.pcd ${TMP_DIR}/table_scene_lms400_reduced.pcd)
-add_test(FeatureMatch ${EXECUTABLE_OUTPUT_PATH}/sksFeatureMatchRANSACTest ${DATA_DIR}/SytheticSurfaceExample/recon.ply ${DATA_DIR}/SytheticSurfaceExample/model_orig.ply)
+add_test(1File ${EXECUTABLE_OUTPUT_PATH}/sksCommandLineArgsTest ${DATA_DIR}/input.txt)
+add_test(ICP ${EXECUTABLE_OUTPUT_PATH}/sksICPTest)
+add_test(DownSample ${EXECUTABLE_OUTPUT_PATH}/sksDownSampleTest ${DATA_DIR}/SurfaceFiltering/table_scene_lms400.pcd ${TMP_DIR}/table_scene_lms400_downsampled.pcd)
+add_test(RemoveOutliers ${EXECUTABLE_OUTPUT_PATH}/sksRemoveOutliersTest ${DATA_DIR}/SurfaceFiltering/table_scene_lms400.pcd ${TMP_DIR}/table_scene_lms400_reduced.pcd)
+add_test(FeatureMatch1 ${EXECUTABLE_OUTPUT_PATH}/sksFeatureMatchRANSACTest ${DATA_DIR}/SytheticSurfaceExample/recon.ply ${DATA_DIR}/SytheticSurfaceExample/model_orig.ply)
+add_test(FeatureMatch2 ${EXECUTABLE_OUTPUT_PATH}/sksFeatureMatchRANSACTest ${DATA_DIR}/SytheticSurfaceExample/recon.ply ${DATA_DIR}/SytheticSurfaceExample/model.ply)
 
 if (SKSURGERYPCLCPP_USE_CUDA)
   add_test(Cuda ${EXECUTABLE_OUTPUT_PATH}/mpCudaTest)

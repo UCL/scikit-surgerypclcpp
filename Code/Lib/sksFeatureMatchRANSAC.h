@@ -25,7 +25,13 @@ namespace sks {
 
 SKSURGERYPCLCPP_WINEXPORT double FeatureMatchRANSAC(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
                                                     const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
-                                                    Eigen::Matrix4f& result
+                                                    float siftNormalSearchRadius,
+                                                    float ransacInlierThreshold,
+                                                    unsigned int ransacMaximumIterations,
+                                                    float icpTransformationEpsilon,
+                                                    unsigned int icpMaximumIterations,
+                                                    Eigen::Matrix4f& result,
+                                                    pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSource
                                                     );
 
 

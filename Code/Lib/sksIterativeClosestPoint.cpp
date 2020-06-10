@@ -26,10 +26,10 @@ double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
                              float transformationEpsilon,
                              float fitnessEpsilon,
                              bool useLM,
-                             Eigen::Matrix4f& result
+                             Eigen::Matrix4f& result,
+                             pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSource
                              )
 {
-  pcl::PointCloud<pcl::PointXYZ> Final;
   double residual = std::numeric_limits<double>::max();
 
   if (useLM)
@@ -41,7 +41,7 @@ double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
     icp.setMaxCorrespondenceDistance(maxCorrespondenceDistance);
     icp.setTransformationEpsilon(transformationEpsilon);
     icp.setEuclideanFitnessEpsilon(fitnessEpsilon);
-    icp.align(Final);
+    icp.align(*transformedSource);
     result = icp.getFinalTransformation();
     residual = icp.getFitnessScore();
   }
@@ -54,7 +54,7 @@ double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
     icp.setMaxCorrespondenceDistance(maxCorrespondenceDistance);
     icp.setTransformationEpsilon(transformationEpsilon);
     icp.setEuclideanFitnessEpsilon(fitnessEpsilon);
-    icp.align(Final);
+    icp.align(*transformedSource);
     result = icp.getFinalTransformation();
     residual = icp.getFitnessScore();
   }

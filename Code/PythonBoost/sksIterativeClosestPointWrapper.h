@@ -30,7 +30,8 @@ SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPointWrapper(const np::ndarray&
                                                               float transformationEpsilon,
                                                               float fitnessEpsilon,
                                                               bool useLM,
-                                                              np::ndarray& result
+                                                              np::ndarray& result,
+                                                              np::ndarray& transformedSource
                                                               );
 }
 #endif

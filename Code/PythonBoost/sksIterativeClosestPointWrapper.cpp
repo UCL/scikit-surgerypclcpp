@@ -14,6 +14,7 @@
 
 #include "sksIterativeClosestPointWrapper.h"
 #include "sksExceptionMacro.h"
+#include "sksConversionUtils.h"
 #include <sksIterativeClosestPoint.h>
 #include <boost/python/extract.hpp>
 
@@ -29,7 +30,8 @@ double IterativeClosestPointWrapper(const np::ndarray& source,
                                     float transformationEpsilon,
                                     float fitnessEpsilon,
                                     bool useLM,
-                                    np::ndarray& result
+                                    np::ndarray& result,
+                                    np::ndarray& transformedSource
                                    )
 {
   if (result.get_nd() != 2)
@@ -76,30 +78,30 @@ double IterativeClosestPointWrapper(const np::ndarray& source,
   {
     sksExceptionThrow() << "target matrix is not float type";
   }
-
-  unsigned long int numberOfPoints = source.shape(0);
-
-  pcl::PointCloud<pcl::PointXYZ>::Ptr sourceCloud (new pcl::PointCloud<pcl::PointXYZ>);
-  sourceCloud->points.resize(numberOfPoints);
-
-  for (unsigned long int i = 0; i < numberOfPoints; i++)
+  if (transformedSource.get_nd() != 2)
   {
-    sourceCloud->points[i].x = boost::python::extract<double>(source[i][0]);
-    sourceCloud->points[i].y = boost::python::extract<double>(source[i][1]);
-    sourceCloud->points[i].z = boost::python::extract<double>(source[i][2]);
+    sksExceptionThrow() << "transformedSource matrix does not have 2 dimensions";
+  }
+  if (transformedSource.shape(1) != 3)
+  {
+    sksExceptionThrow() << "transformedSource matrix does not have 3 columns";
+  }
+  if (transformedSource.get_dtype() != np::dtype::get_builtin<double>())
+  {
+    sksExceptionThrow() << "transformedSource matrix is not float type";
+  }
+  if (transformedSource.shape(0) != source.shape(0))
+  {
+    sksExceptionThrow() << "transformedSource does not have the same number of rows as source.";
+  }
+  if (transformedSource.shape(1) != source.shape(1))
+  {
+    sksExceptionThrow() << "transformedSource does not have the same number of columns as source.";
   }
 
-  numberOfPoints = target.shape(0);
-
-  pcl::PointCloud<pcl::PointXYZ>::Ptr targetCloud (new pcl::PointCloud<pcl::PointXYZ>);
-  targetCloud->points.resize(numberOfPoints);
-
-  for (unsigned long int i = 0; i < numberOfPoints; i++)
-  {
-    targetCloud->points[i].x = boost::python::extract<double>(target[i][0]);
-    targetCloud->points[i].y = boost::python::extract<double>(target[i][1]);
-    targetCloud->points[i].z = boost::python::extract<double>(target[i][2]);
-  }
+  pcl::PointCloud<pcl::PointXYZ>::Ptr sourceCloud = ConvertInputToPointCloud(source);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr targetCloud = ConvertInputToPointCloud(target);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSourceCloud = ConvertInputToPointCloud(transformedSource);
 
   Eigen::Matrix4f finalTransform;
 
@@ -110,7 +112,8 @@ double IterativeClosestPointWrapper(const np::ndarray& source,
                                                transformationEpsilon,
                                                fitnessEpsilon,
                                                useLM,
-                                               finalTransform);
+                                               finalTransform,
+                                               transformedSourceCloud);
 
   double *resultPtr = reinterpret_cast<double*>(result.get_data());
   for (int r = 0; r < 4; ++r)
@@ -120,6 +123,16 @@ double IterativeClosestPointWrapper(const np::ndarray& source,
       resultPtr[r*4 + c] = finalTransform(r,c);
     }
   }
+
+  unsigned long int outputNumberOfPoints = transformedSourceCloud->size();
+
+  for (unsigned long int i = 0; i < outputNumberOfPoints; i++)
+  {
+    transformedSource[i][0] = transformedSourceCloud->points[i].x;
+    transformedSource[i][1] = transformedSourceCloud->points[i].y;
+    transformedSource[i][2] = transformedSourceCloud->points[i].z;
+  }
+
   return residual;
 }
 

@@ -30,7 +30,8 @@ SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPoint(const pcl::PointCloud<pcl
                                                        float transformationEpsilon,
                                                        float fitnessEpsilon,
                                                        bool useLM,
-                                                       Eigen::Matrix4f& result
+                                                       Eigen::Matrix4f& result,
+                                                       pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSource
                                                        );
 
 

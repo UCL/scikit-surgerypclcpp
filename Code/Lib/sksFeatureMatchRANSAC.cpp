@@ -24,13 +24,12 @@
 namespace sks {
 
 //-----------------------------------------------------------------------------
-pcl::PointCloud<pcl::PointWithScale>::Ptr computeSIFTPoints(const pcl::PointCloud<pcl::PointXYZ>::Ptr input)
+pcl::PointCloud<pcl::PointWithScale>::Ptr computeSIFTPoints(const pcl::PointCloud<pcl::PointXYZ>::Ptr input, float normalSearchRadius)
 {
   const float siftMinScale = 0.01f;
   const int siftNumOctaves = 3;
   const int siftNScalesPerOctave = 4;
   const float siftMinContrast = 0.001f;
-  const float normalSearchRadius = 0.2;
 
   pcl::PointCloud<pcl::PointNormal>::Ptr normals(new pcl::PointCloud<pcl::PointNormal>);
   pcl::search::KdTree<pcl::PointXYZ>::Ptr treeN(new pcl::search::KdTree<pcl::PointXYZ>());
@@ -67,25 +66,32 @@ pcl::PointCloud<pcl::PointWithScale>::Ptr computeSIFTPoints(const pcl::PointClou
 //-----------------------------------------------------------------------------
 double FeatureMatchRANSAC(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
                           const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
-                          Eigen::Matrix4f& result
+                          float siftNormalSearchRadius,
+                          float ransacInlierThreshold,
+                          unsigned int ransacMaximumIterations,
+                          float icpTransformationEpsilon,
+                          unsigned int icpMaximumIterations,
+                          Eigen::Matrix4f& result,
+                          pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSource
                           )
 {
 
   #define Scalar float
+  double residual = std::numeric_limits<double>::max();
 
-  pcl::PointCloud<pcl::PointWithScale>::Ptr sourceSIFT = computeSIFTPoints(source);
-  pcl::PointCloud<pcl::PointWithScale>::Ptr targetSIFT = computeSIFTPoints(target);
-
-  pcl::registration::CorrespondenceEstimation<pcl::PointXYZ, pcl::PointXYZ, Scalar>::Ptr corEst(new pcl::registration::CorrespondenceEstimation<pcl::PointXYZ, pcl::PointXYZ, Scalar>);
-  corEst->setInputSource(source);
-  corEst->setInputTarget(target);
+  pcl::PointCloud<pcl::PointWithScale>::Ptr sourceSIFT = computeSIFTPoints(source, siftNormalSearchRadius);
+  pcl::PointCloud<pcl::PointWithScale>::Ptr targetSIFT = computeSIFTPoints(target, siftNormalSearchRadius);
 
   pcl::registration::CorrespondenceRejectorSampleConsensus<pcl::PointWithScale>::Ptr corRejSAC (new pcl::registration::CorrespondenceRejectorSampleConsensus<pcl::PointWithScale>);
   corRejSAC->setInputSource(sourceSIFT);
   corRejSAC->setInputTarget(targetSIFT);
-  corRejSAC->setInlierThreshold(1);
-  corRejSAC->setMaximumIterations(10000);
+  corRejSAC->setInlierThreshold(ransacInlierThreshold);
+  corRejSAC->setMaximumIterations(ransacMaximumIterations);
   corRejSAC->setRefineModel(false);
+
+  pcl::registration::CorrespondenceEstimation<pcl::PointXYZ, pcl::PointXYZ, Scalar>::Ptr corEst(new pcl::registration::CorrespondenceEstimation<pcl::PointXYZ, pcl::PointXYZ, Scalar>);
+  corEst->setInputSource(source);
+  corEst->setInputTarget(target);
 
   pcl::registration::TransformationEstimationSVD<pcl::PointXYZ, pcl::PointXYZ, Scalar>::Ptr transEst(new pcl::registration::TransformationEstimationSVD<pcl::PointXYZ, pcl::PointXYZ, Scalar>);
 
@@ -95,14 +101,12 @@ double FeatureMatchRANSAC(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
   icp.addCorrespondenceRejector(corRejSAC);
   icp.setInputSource(source);
   icp.setInputTarget(target);
-  icp.setMaximumIterations(1000);
-  icp.setTransformationEpsilon(1e-10);
-
-  pcl::PointCloud<pcl::PointXYZ> output;
-  icp.align (output);
+  icp.setMaximumIterations(icpMaximumIterations);
+  icp.setTransformationEpsilon(icpTransformationEpsilon);
+  icp.align(*transformedSource);
 
   result = icp.getFinalTransformation();
-  double residual = icp.getFitnessScore();
+  residual = icp.getFitnessScore();
 
   return residual;
 }
