@@ -12,20 +12,21 @@
 
 =============================================================================*/
 
-#ifndef sksPassThroughFilter_h
-#define sksPassThroughFilter_h
+#ifndef sksRadiusRemovalFilterWrapper_h
+#define sksRadiusRemovalFilterWrapper_h
 
-#include <pcl/point_cloud.h>
-#include <pcl/point_types.h>
-
+#include <boost/python/numpy.hpp>
 #include "sksWin32ExportHeader.h"
 
-namespace sks {
+namespace np = boost::python::numpy;
 
-SKSURGERYPCLCPP_WINEXPORT
-const pcl::PointCloud<pcl::PointXYZ>::Ptr PassThroughFilter(const pcl::PointCloud<pcl::PointXYZ>::Ptr input,
-                                                            const char fieldName, float minDistance, float maxDistance, bool insideInterval);
+namespace sks
+{
 
-} // end namespace
+SKSURGERYPCLCPP_WINEXPORT np::ndarray RadiusRemovalFilterWrapper(const np::ndarray& input,
+                                                                 float radius,
+                                                                 unsigned int minNumberOfNeighbours
+                                                                );
+}
 
 #endif

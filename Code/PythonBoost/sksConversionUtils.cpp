@@ -50,7 +50,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr ConvertInputToPointCloud(const np::ndarray& 
     cloud->points[i].y = boost::python::extract<double>(input[i][1]);
     cloud->points[i].z = boost::python::extract<double>(input[i][2]);
   }
-  
+
   return cloud;
 }
 

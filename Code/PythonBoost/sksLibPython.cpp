@@ -17,6 +17,8 @@
 #include "sksIterativeClosestPointWrapper.h"
 #include "sksDownSamplePointsWrapper.h"
 #include "sksRemoveOutlierPointsWrapper.h"
+#include "sksPassThroughFilterWrapper.h"
+#include "sksRadiusRemovalFilterWrapper.h"
 #include "sksException.h"
 #include "python_docstrings.h"
 
@@ -42,6 +44,8 @@ BOOST_PYTHON_MODULE(sksurgerypclpython)
   boost::python::def("iterative_closest_point", sks::IterativeClosestPointWrapper, icp_docstring);
   boost::python::def("down_sample_points", sks::DownSamplePointsWrapper, downsample_docstring);
   boost::python::def("remove_outlier_points", sks::RemoveOutlierPointsWrapper, remove_outlier_docstring);
+  boost::python::def("pass_through_filter", sks::PassThroughFilterWrapper);
+  boost::python::def("radius_removal_filter", sks::RadiusRemovalFilterWrapper);
 }
 
 }  // end namespace sks
