@@ -67,7 +67,7 @@ if(NOT DEFINED PCL_DIR)
       -DBUILD_geometry:BOOL=OFF
       -DBUILD_io:BOOL=ON
       -DBUILD_kdtree:BOOL=ON
-      -DBUILD_keypoints:BOOL=OFF
+      -DBUILD_keypoints:BOOL=ON
       -DBUILD_ml:BOOL=OFF
       -DBUILD_octree:BOOL=ON
       -DBUILD_outofcore:BOOL=OFF
