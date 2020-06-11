@@ -17,6 +17,18 @@
 
 using namespace std;
 
+/* Docstrings should use C++ string literals, for easier multi line comments.
+Equal indentations on each line, for Sphinx compatiblity. See
+(https://pybind11.readthedocs.io/en/stable/advanced/misc.html#generating-documentation-using-sphinx)
+*/
+
+auto example_docstring = R"(
+    this is a docstring.
+    :param input: var
+    :type input: float
+
+    )";
+
 auto icp_docstring = R"(
     Run Iterative Closest Point algorithm.
 
