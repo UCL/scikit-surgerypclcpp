@@ -13,7 +13,7 @@
 =============================================================================*/
 
 #include "sksFeatureMatch.h"
-#include <pcl/features/normal_3d.h>
+#include "sksMyFunctions.h"
 #include <pcl/keypoints/sift_keypoint.h>
 #include <pcl/registration/correspondence_estimation.h>
 #include <pcl/registration/transformation_estimation_svd.h>
@@ -23,32 +23,6 @@
 #include <iostream>
 
 namespace sks {
-
-//-----------------------------------------------------------------------------
-pcl::PointCloud<pcl::PointNormal>::Ptr computeNormals(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr input,
-                                                      float normalSearchRadius)
-{
-  pcl::search::KdTree<pcl::PointXYZ>::Ptr treeN(new pcl::search::KdTree<pcl::PointXYZ>());
-
-  pcl::NormalEstimation<pcl::PointXYZ, pcl::PointNormal> normalEstimation;
-  normalEstimation.setInputCloud(input);
-  normalEstimation.setSearchMethod(treeN);
-  normalEstimation.setRadiusSearch(normalSearchRadius);
-
-  pcl::PointCloud<pcl::PointNormal>::Ptr normals(new pcl::PointCloud<pcl::PointNormal>);
-  normalEstimation.compute(*normals);
-
-  // Copy the xyz info from input and add it to normals as the xyz field in PointNormals estimation is zero
-  for(size_t i = 0; i < normals->points.size(); ++i)
-  {
-    normals->points[i].x = input->points[i].x;
-    normals->points[i].y = input->points[i].y;
-    normals->points[i].z = input->points[i].z;
-  }
-
-  return normals;
-}
-
 
 //-----------------------------------------------------------------------------
 pcl::PointCloud<pcl::PointWithScale>::Ptr computeSIFTPoints(const pcl::PointCloud<pcl::PointNormal>::ConstPtr pointNormals,

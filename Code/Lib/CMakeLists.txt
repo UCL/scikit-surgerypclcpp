@@ -24,6 +24,7 @@ set(SKSURGERYPCLCPP_LIBRARY_SRCS
   sksPassThroughFilter.cpp
   sksRadiusRemovalFilter.cpp
   sksFeatureMatch.cpp
+  sksGeneralizedIterativeClosestPoint.cpp
 )
 
 set(SKSURGERYPCLCPP_LIBRARY_HDRS
