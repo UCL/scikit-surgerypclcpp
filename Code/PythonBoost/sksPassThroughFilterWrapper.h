@@ -23,6 +23,13 @@ namespace np = boost::python::numpy;
 namespace sks
 {
 
+/**
+  @brief Filter point cloud using pcl::PassThroughFilter.
+  @param fieldName single char, either x, y or z.
+  @param minDistance minimum distance.
+  @param maxDistance maximum distance.
+  @param insideInterval if true, points are kept if they are inside the interval, if false, outside.
+*/
 SKSURGERYPCLCPP_WINEXPORT np::ndarray PassThroughFilterWrapper(const np::ndarray& input,
                                                                char fieldName,
                                                                float minDistance,

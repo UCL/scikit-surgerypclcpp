@@ -19,9 +19,12 @@ Features
 --------
 
 * Support for Python Wheels, thanks to [Matthew Brett's multibuild](https://github.com/matthew-brett/multibuild).
-* Iterative Closest Point (ICP) algorithm to register two N (rows) x 3 (columns, x, y, z) point sets.
+* Iterative Closest Point (ICP) algorithm to register two N (rows) x 3 (columns, x, y, z) point sets., using either normal ICP (exact point match), or LM-ICP.
 * Downsampling of point clouds via ```pcl::VoxelGrid``` filter.
 * Removal of outlier points from point clouds via ```pcl::StatisticalOutlierRemoval```.
+* Filtering of points using ```pcl::PassThrough``` filter.
+* Filter of points using ```pcl::pcl::RadiusOutlierRemoval``` filter.
+* Course registration of 2 point clouds, computing surface normals, SIFT Keypoints, FPFH descriptors, RANSAC to match keypoints, then SVD to compute rigid transformation.
 
 Look in ```Code/PythonBoost/sksLibPython.cpp``` for python method names, and in the containing folder,
 to see header files with the method signatures.

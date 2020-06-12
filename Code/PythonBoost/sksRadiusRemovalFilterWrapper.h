@@ -23,6 +23,11 @@ namespace np = boost::python::numpy;
 namespace sks
 {
 
+/**
+  @brief Filter point clouds using pcl::RadiusRemovalFilter, points without a minimum number of neighbours within a certain radius are discarded.
+  @param radius radius
+  @param minNumberOfNeighbours
+*/
 SKSURGERYPCLCPP_WINEXPORT np::ndarray RadiusRemovalFilterWrapper(const np::ndarray& input,
                                                                  float radius,
                                                                  unsigned int minNumberOfNeighbours

@@ -23,6 +23,13 @@ namespace np = boost::python::numpy;
 namespace sks
 {
 
+/**
+  @brief Filters point cloud using pcl::StatisticalOutlierRemoval filter.
+  @param meanK the number of neighboring points to check
+  @param stdDev the standard deviation to accept
+
+  See: https://stats.stackexchange.com/questions/288669/the-algorithm-behind-pclstatisticaloutlierremoval
+*/
 SKSURGERYPCLCPP_WINEXPORT np::ndarray RemoveOutlierPointsWrapper(const np::ndarray& input,
                                                                  float meanK,
                                                                  float stdDev
