@@ -26,9 +26,9 @@ namespace sks
 /**
   @brief Filter to down-sample a point cloud using the pcl::VoxelGrid filter.
   @param input [Nx3] point cloud, where each row is x, y, z coordinates.
-  @param vx size of voxel grid in x direction, in metres.
-  @param vy size of voxel grid in y direction, in metres.
-  @param vz size of voxel grid in z direction, in metres.
+  @param vx size of voxel grid in x direction.
+  @param vy size of voxel grid in y direction.
+  @param vz size of voxel grid in z direction.
 */
 SKSURGERYPCLCPP_WINEXPORT np::ndarray DownSamplePointsWrapper(const np::ndarray& input,
                                                               float vx,

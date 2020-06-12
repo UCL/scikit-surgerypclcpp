@@ -14,7 +14,7 @@ def test_cloud_reduction():
     source_points = np.loadtxt(source_points_file)
     six.print_("source_points.shape=" + str(source_points.shape))
 
-    voxel_reduced_surface = sks.down_sample_points(source_points, 0.01, 0.01, 0.01)  # in metres?
+    voxel_reduced_surface = sks.down_sample_points(source_points, 0.01, 0.01, 0.01)
     six.print_("voxel_reduced_surface.shape=" + str(voxel_reduced_surface.shape))
 
     outlier_reduced_surface = sks.remove_outlier_points(voxel_reduced_surface, 50, 1.0)

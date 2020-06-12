@@ -29,7 +29,7 @@ TEST_CASE( "Feature Match test", "[Feature Match]" ) {
   reader.read(sks::argv[1], *sourceCloud);
 
   pcl::PointCloud<pcl::PointXYZ>::Ptr sourceFiltered (new pcl::PointCloud<pcl::PointXYZ>());
-  sourceFiltered = sks::DownSamplePointCloud(sourceCloud, 0.05, 0.05, 0.05); // Units are in metres.
+  sourceFiltered = sks::DownSamplePointCloud(sourceCloud, 0.05, 0.05, 0.05);
 
   std::cout << "Loaded:" << sks::argv[1] << ", which downsampled to:" << sourceFiltered->size() << " points." << std::endl;
 
@@ -37,7 +37,7 @@ TEST_CASE( "Feature Match test", "[Feature Match]" ) {
   reader.read(sks::argv[2], *targetCloud);
 
   pcl::PointCloud<pcl::PointXYZ>::Ptr targetFiltered (new pcl::PointCloud<pcl::PointXYZ>());
-  targetFiltered = sks::DownSamplePointCloud(targetCloud, 0.05, 0.05, 0.05); // Units are in metres.
+  targetFiltered = sks::DownSamplePointCloud(targetCloud, 0.05, 0.05, 0.05);
 
   std::cout << "Loaded:" << sks::argv[2] << ", which downsampled to:" << targetFiltered->size() << " points." << std::endl;
 
@@ -59,13 +59,13 @@ TEST_CASE( "Feature Match test", "[Feature Match]" ) {
 
   sks::FeatureMatch(sourceTransformed,
                     targetFiltered,
-                    0.1,                     // Normal radius search. Units are in metres.
+                    0.1,                     // Normal radius search.
                     0.1,                     // SIFT min scale
                     3,                       // SIFT num octaves
                     4,                       // SIFT num scales per octave
                     0.0,                     // SIFT min contrast
                     20,                      // SIFT KSearch
-                    0.05,                    // RANSAC inlier threshold. Units are in metres.
+                    0.05,                    // RANSAC inlier threshold.
                     1000,                    // RANSAC iterations
                     finalTransform,
                     transformedSourceCloud);

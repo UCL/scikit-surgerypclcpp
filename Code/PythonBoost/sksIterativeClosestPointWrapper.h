@@ -28,7 +28,7 @@ namespace sks
   @param source [Nx3] source point cloud, where each row is x, y, z coordinates.
   @param target [Nx3] target point cloud, where each row is x, y, z coordinates.
   @param maxNumberOfIterations maximum number of iterations
-  @param maxCorrespondenceDistance distance above which point matches are discared (in metres?).
+  @param maxCorrespondenceDistance distance above which point matches are discarded.
   @param transformationEpsilon if the change in the transformation is below this threshold, the algorithm exits.
   @param fitnessEpsilon if the change in the cost function is below this threshold, the algorithm exits.
   @param useLM if true, does an LM-ICP variant, if false, normal ICP.

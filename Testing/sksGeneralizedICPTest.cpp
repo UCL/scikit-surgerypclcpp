@@ -29,7 +29,7 @@ TEST_CASE( "Generalized Iterative Closest Point", "[GICP]" ) {
   reader.read(sks::argv[1], *sourceCloud);
 
   pcl::PointCloud<pcl::PointXYZ>::Ptr sourceFiltered (new pcl::PointCloud<pcl::PointXYZ>());
-  sourceFiltered = sks::DownSamplePointCloud(sourceCloud, 0.01, 0.01, 0.01); // Units are in metres.
+  sourceFiltered = sks::DownSamplePointCloud(sourceCloud, 0.01, 0.01, 0.01);
 
   std::cout << "Loaded:" << sks::argv[1] << ", which downsampled to:" << sourceFiltered->size() << " points." << std::endl;
 
@@ -37,7 +37,7 @@ TEST_CASE( "Generalized Iterative Closest Point", "[GICP]" ) {
   reader.read(sks::argv[2], *targetCloud);
 
   pcl::PointCloud<pcl::PointXYZ>::Ptr targetFiltered (new pcl::PointCloud<pcl::PointXYZ>());
-  targetFiltered = sks::DownSamplePointCloud(targetCloud, 0.01, 0.01, 0.01); // Units are in metres.
+  targetFiltered = sks::DownSamplePointCloud(targetCloud, 0.01, 0.01, 0.01);
 
   std::cout << "Loaded:" << sks::argv[2] << ", which downsampled to:" << targetFiltered->size() << " points." << std::endl;
 
@@ -56,10 +56,10 @@ TEST_CASE( "Generalized Iterative Closest Point", "[GICP]" ) {
 
   double residual = sks::GeneralizedIterativeClosestPoint(sourceTransformed,
                                                           targetFiltered,
-                                                          0.02,   // Normal search radius (metres)
+                                                          0.02,   // Normal search radius
                                                           45,     // Angle threshold when checking correspondences
                                                           1000,   // ICP max iterations
-                                                          0.1,    // ICP max correspondence distance (metres)
+                                                          0.1,    // ICP max correspondence distance
                                                           0.0001, // ICP transformation epsilon
                                                           0.0001, // ICP cost function epsilon
                                                           finalTransform

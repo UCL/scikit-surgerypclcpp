@@ -50,11 +50,11 @@ auto downsample_docstring = R"(
 
     :param input: Input point cloud
     :type input: np.ndarray
-    :param vx: X  voxel size (metres)
+    :param vx: X  voxel size
     :type vx: float
-    :param vy: Y voxel size (metres)
+    :param vy: Y voxel size
     :type vy: float
-    :param vz: Z voxel size (metres)
+    :param vz: Z voxel size
     :type vz: float
     :return: Output point cloud
     :rtype: np.ndarray
@@ -99,7 +99,7 @@ auto radiusremoval_docstring = R"(
 
     :param input: Input point cloud
     :type input: np.ndarray
-    :param radius: radius around each point (metres)
+    :param radius: radius around each point
     :type radius: float
     :param minNumberOfNeighbours: minimum number of points to have within the given radius, without which, point is discarded
     :type minNumberOfNeighbours: unsigned int
@@ -116,7 +116,7 @@ auto featurematch_docstring = R"(
     :type source: np.ndarray
     :param target: [Mx3] target point cloud
     :type target: np.ndarray
-    :param normalSearchRadius: radius around each point (metres)
+    :param normalSearchRadius: radius around each point
     :type normalSearchRadius: float
     :param siftMinScale: minimum scale for SIFT operator
     :type siftMinScale: float
@@ -128,7 +128,7 @@ auto featurematch_docstring = R"(
     :type siftMinContrast: float
     :param siftKSearch: number of neighbours for SIFT to search over
     :type siftKSearch: unsigned int
-    :param ransacInlierThreshold: distance within which to call points inlier matches (metres)
+    :param ransacInlierThreshold: distance within which to call points inlier matches
     :type ransacInlierThreshold: float
     :param ransacMaximumIterations: maximum number of RANSAC iterations.
     :type ransacMaximumIterations: unsigned int
