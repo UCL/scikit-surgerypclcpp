@@ -23,16 +23,19 @@ namespace sks
 {
 
 //-----------------------------------------------------------------------------
-double FeatureMatchRANSACWrapper(const np::ndarray& source,
-                                 const np::ndarray& target,
-                                 float siftNormalSearchRadius,
-                                 float ransacInlierThreshold,
-                                 unsigned int ransacMaximumIterations,
-                                 float icpTransformationEpsilon,
-                                 unsigned int icpMaximumIterations,
-                                 np::ndarray& result,
-                                 np::ndarray& transformedSource
-                                )
+void FeatureMatchRANSACWrapper(const np::ndarray& source,
+                               const np::ndarray& target,
+                               float siftNormalSearchRadius,
+                               float siftMinScale,
+                               unsigned int siftNumOctaves,
+                               unsigned int siftNumScalesPerOctave,
+                               float siftMinContrast,
+                               int siftKSearch,
+                               float ransacInlierThreshold,
+                               unsigned int ransacMaximumIterations,
+                               np::ndarray& result,
+                               np::ndarray& transformedSource
+                              )
 {
   CheckInputsForRegistration(source, target, transformedSource, result);
 
@@ -42,20 +45,21 @@ double FeatureMatchRANSACWrapper(const np::ndarray& source,
 
   Eigen::Matrix4f finalTransform;
 
-  double residual = sks::FeatureMatchRANSAC(sourceCloud,
-                                            targetCloud,
-                                            siftNormalSearchRadius,
-                                            ransacInlierThreshold,
-                                            ransacMaximumIterations,
-                                            icpTransformationEpsilon,
-                                            icpMaximumIterations,
-                                            finalTransform,
-                                            transformedSourceCloud);
+  sks::FeatureMatchRANSAC(sourceCloud,
+                          targetCloud,
+                          siftNormalSearchRadius,
+                          siftMinScale,
+                          siftNumOctaves,
+                          siftNumScalesPerOctave,
+                          siftMinContrast,
+                          siftKSearch,
+                          ransacInlierThreshold,
+                          ransacMaximumIterations,
+                          finalTransform,
+                          transformedSourceCloud);
 
   ConvertEigenToNumpy(finalTransform, result);
   ConvertPointCloudToNumpy(transformedSourceCloud, transformedSource);
-
-  return residual;
 }
 
 } // end namespace

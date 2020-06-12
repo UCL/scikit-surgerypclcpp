@@ -23,15 +23,18 @@ namespace np = boost::python::numpy;
 namespace sks
 {
 
-SKSURGERYPCLCPP_WINEXPORT double FeatureMatchRANSACWrapper(const np::ndarray& source,
-                                                           const np::ndarray& target,
-                                                           float siftNormalSearchRadius,
-                                                           float ransacInlierThreshold,
-                                                           unsigned int ransacMaximumIterations,
-                                                           float icpTransformationEpsilon,
-                                                           unsigned int icpMaximumIterations,
-                                                           np::ndarray& result,
-                                                           np::ndarray& transformedSource
-                                                           );
+SKSURGERYPCLCPP_WINEXPORT void FeatureMatchRANSACWrapper(const np::ndarray& source,
+                                                         const np::ndarray& target,
+                                                         float siftNormalSearchRadius,
+                                                         float siftMinScale,
+                                                         unsigned int siftNumOctaves,
+                                                         unsigned int siftNumScalesPerOctave,
+                                                         float siftMinContrast,
+                                                         int siftKSearch,
+                                                         float ransacInlierThreshold,
+                                                         unsigned int ransacMaximumIterations,
+                                                         np::ndarray& result,
+                                                         np::ndarray& transformedSource
+                                                         );
 }
 #endif
