@@ -12,8 +12,8 @@
 
 =============================================================================*/
 
-#ifndef sksFeatureWrapRANSACWrapper_h
-#define sksFeatureWrapRANSACWrapper_h
+#ifndef sksFeatureWrapWrapper_h
+#define sksFeatureWrapWrapper_h
 
 #include <boost/python/numpy.hpp>
 #include "sksWin32ExportHeader.h"
@@ -36,18 +36,18 @@ namespace sks
   @param result output 4x4 matrix
   @param transformedSource the transformed source data set. Must be pre-allocated.
 */
-SKSURGERYPCLCPP_WINEXPORT void FeatureMatchRANSACWrapper(const np::ndarray& source,
-                                                         const np::ndarray& target,
-                                                         float normalSearchRadius,
-                                                         float siftMinScale,
-                                                         unsigned int siftNumOctaves,
-                                                         unsigned int siftNumScalesPerOctave,
-                                                         float siftMinContrast,
-                                                         unsigned int siftKSearch,
-                                                         float ransacInlierThreshold,
-                                                         unsigned int ransacMaximumIterations,
-                                                         np::ndarray& result,
-                                                         np::ndarray& transformedSource
-                                                         );
+SKSURGERYPCLCPP_WINEXPORT void FeatureMatchWrapper(const np::ndarray& source,
+                                                   const np::ndarray& target,
+                                                   float normalSearchRadius,
+                                                   float siftMinScale,
+                                                   unsigned int siftNumOctaves,
+                                                   unsigned int siftNumScalesPerOctave,
+                                                   float siftMinContrast,
+                                                   unsigned int siftKSearch,
+                                                   float ransacInlierThreshold,
+                                                   unsigned int ransacMaximumIterations,
+                                                   np::ndarray& result,
+                                                   np::ndarray& transformedSource
+                                                   );
 }
 #endif

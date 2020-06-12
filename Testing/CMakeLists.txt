@@ -20,7 +20,7 @@ set(TEST_CASES
   sksICPTest
   sksDownSampleTest
   sksRemoveOutliersTest
-  sksFeatureMatchRANSACTest
+  sksFeatureMatchTest
 )
 
 foreach(_test_case ${TEST_CASES})

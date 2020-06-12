@@ -23,7 +23,7 @@ set(SKSURGERYPCLCPP_LIBRARY_SRCS
   sksRemoveOutliersFromPointCloud.cpp
   sksPassThroughFilter.cpp
   sksRadiusRemovalFilter.cpp
-  sksFeatureMatchRANSAC.cpp
+  sksFeatureMatch.cpp
 )
 
 set(SKSURGERYPCLCPP_LIBRARY_HDRS

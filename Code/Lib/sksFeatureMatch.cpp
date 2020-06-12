@@ -12,7 +12,7 @@
 
 =============================================================================*/
 
-#include "sksFeatureMatchRANSAC.h"
+#include "sksFeatureMatch.h"
 #include <pcl/features/normal_3d.h>
 #include <pcl/keypoints/sift_keypoint.h>
 #include <pcl/registration/correspondence_estimation.h>
@@ -100,19 +100,19 @@ pcl::PointCloud<pcl::FPFHSignature33>::Ptr computeFeatures(const pcl::PointCloud
 
 
 //-----------------------------------------------------------------------------
-void FeatureMatchRANSAC(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
-                        const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
-                        float normalSearchRadius,
-                        float siftMinScale,
-                        unsigned int siftNumOctaves,
-                        unsigned int siftNumScalesPerOctave,
-                        float siftMinContrast,
-                        int siftKSearch,
-                        float ransacInlierThreshold,
-                        unsigned int ransacMaximumIterations,
-                        Eigen::Matrix4f& transformationMatrix,
-                        pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSource
-                        )
+void FeatureMatch(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
+                  const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
+                  float normalSearchRadius,
+                  float siftMinScale,
+                  unsigned int siftNumOctaves,
+                  unsigned int siftNumScalesPerOctave,
+                  float siftMinContrast,
+                  int siftKSearch,
+                  float ransacInlierThreshold,
+                  unsigned int ransacMaximumIterations,
+                  Eigen::Matrix4f& transformationMatrix,
+                  pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSource
+                  )
 {
 
   #define Scalar float

@@ -27,7 +27,7 @@ if(NOT BUILDING_GUIS)
     sksRemoveOutlierPointsWrapper.cpp
     sksPassThroughFilterWrapper.cpp
     sksRadiusRemovalFilterWrapper.cpp
-    sksFeatureMatchRANSACWrapper.cpp
+    sksFeatureMatchWrapper.cpp
     sksLibPython.cpp
   )
 

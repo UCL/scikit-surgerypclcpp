@@ -17,11 +17,11 @@
 #include "sksDownSamplePointCloud.h"
 #include <pcl/io/pcd_io.h>
 #include <pcl/registration/icp.h>
-#include <sksFeatureMatchRANSAC.h>
+#include <sksFeatureMatch.h>
 #include <iostream>
 #include <vector>
 
-TEST_CASE( "Feature Match test", "[RANSAC]" ) {
+TEST_CASE( "Feature Match test", "[Feature Match]" ) {
 
   pcl::PointCloud<pcl::PointXYZ>::Ptr sourceCloud (new pcl::PointCloud<pcl::PointXYZ>);
 
@@ -57,18 +57,18 @@ TEST_CASE( "Feature Match test", "[RANSAC]" ) {
 
   Eigen::Matrix4f finalTransform;
 
-  sks::FeatureMatchRANSAC(sourceTransformed,
-                          targetFiltered,
-                          0.1,                     // Normal radius search. Units are in metres.
-                          0.1,                     // SIFT min scale
-                          3,                       // SIFT num octaves
-                          4,                       // SIFT num scales per octave
-                          0.0,                     // SIFT min contrast
-                          20,                      // SIFT KSearch
-                          0.1,                     // RANSAC inlier threshold. Units are in metres.
-                          1000,                    // RANSAC iterations
-                          finalTransform,
-                          transformedSourceCloud);
+  sks::FeatureMatch(sourceTransformed,
+                    targetFiltered,
+                    0.1,                     // Normal radius search. Units are in metres.
+                    0.1,                     // SIFT min scale
+                    3,                       // SIFT num octaves
+                    4,                       // SIFT num scales per octave
+                    0.0,                     // SIFT min contrast
+                    20,                      // SIFT KSearch
+                    0.05,                    // RANSAC inlier threshold. Units are in metres.
+                    1000,                    // RANSAC iterations
+                    finalTransform,
+                    transformedSourceCloud);
 
   std::cout << "FeatureMatch matrix=" << finalTransform << std::endl;
 
