@@ -25,7 +25,7 @@ namespace sks
 
 /**
   @Brief Computes an initial rigid registration based on SIFT keypoints, FPFH descriptors, RANSAC to find a close match, and then SVD on matched points.
-  @param siftNormalSearchRadius radius to search to calculate surface normal for each input point.
+  @param normalSearchRadius radius to search to calculate surface normal for each input point.
   @param siftMinScale SIFT minimum scale. (TODO: what does this mean? see pcl::SIFTSIFTKeypoint)
   @param siftNumOctaves SIFT number of octaves/scales.  (TODO: what does this mean?)
   @param siftNumScalesPerOctave SIFT number of scales per octave.  (TODO: what does this mean?)
@@ -38,12 +38,12 @@ namespace sks
 */
 SKSURGERYPCLCPP_WINEXPORT void FeatureMatchRANSACWrapper(const np::ndarray& source,
                                                          const np::ndarray& target,
-                                                         float siftNormalSearchRadius,
+                                                         float normalSearchRadius,
                                                          float siftMinScale,
                                                          unsigned int siftNumOctaves,
                                                          unsigned int siftNumScalesPerOctave,
                                                          float siftMinContrast,
-                                                         int siftKSearch,
+                                                         unsigned int siftKSearch,
                                                          float ransacInlierThreshold,
                                                          unsigned int ransacMaximumIterations,
                                                          np::ndarray& result,

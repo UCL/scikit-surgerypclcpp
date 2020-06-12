@@ -20,8 +20,8 @@
 #include "sksPassThroughFilterWrapper.h"
 #include "sksRadiusRemovalFilterWrapper.h"
 #include "sksFeatureMatchRANSACWrapper.h"
+#include "sksPythonDocstrings.h"
 #include "sksException.h"
-#include "python_docstrings.h"
 
 #include <ostream>
 #include <sstream>
@@ -45,9 +45,9 @@ BOOST_PYTHON_MODULE(sksurgerypclpython)
   boost::python::def("iterative_closest_point", sks::IterativeClosestPointWrapper, icp_docstring);
   boost::python::def("down_sample_points", sks::DownSamplePointsWrapper, downsample_docstring);
   boost::python::def("remove_outlier_points", sks::RemoveOutlierPointsWrapper, remove_outlier_docstring);
-  boost::python::def("pass_through_filter", sks::PassThroughFilterWrapper);
-  boost::python::def("radius_removal_filter", sks::RadiusRemovalFilterWrapper);
-  boost::python::def("feature_match_ransac", sks::FeatureMatchRANSACWrapper);
+  boost::python::def("pass_through_filter", sks::PassThroughFilterWrapper, passthrough_docstring);
+  boost::python::def("radius_removal_filter", sks::RadiusRemovalFilterWrapper, radiusremoval_docstring);
+  boost::python::def("feature_match_ransac", sks::FeatureMatchRANSACWrapper, featurematch_docstring);
 }
 
 }  // end namespace sks
