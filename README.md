@@ -25,6 +25,7 @@ Features
 * Filtering of points using ```pcl::PassThrough``` filter.
 * Filter of points using ```pcl::pcl::RadiusOutlierRemoval``` filter.
 * Course registration of 2 point clouds, computing surface normals, SIFT Keypoints, FPFH descriptors, RANSAC to match keypoints, then SVD to compute rigid transformation.
+* Generalized Iterative Closest Point (GICP) algorithm to register two N (rows) x 3 (columns, x, y, z) point sets, using surface normals or distance to reject matches.
 
 Look in ```Code/PythonBoost/sksLibPython.cpp``` for python method names, and in the containing folder,
 to see header files with the method signatures.
