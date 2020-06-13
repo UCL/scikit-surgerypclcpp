@@ -12,8 +12,8 @@
 
 =============================================================================*/
 
-#ifndef sksRemoveOutlierPointsWrapper_h
-#define sksRemoveOutlierPointsWrapper_h
+#ifndef sksRadiusRemovalFilterWrapper_h
+#define sksRadiusRemovalFilterWrapper_h
 
 #include <boost/python/numpy.hpp>
 #include "sksWin32ExportHeader.h"
@@ -24,15 +24,14 @@ namespace sks
 {
 
 /**
-  @brief Filters point cloud using pcl::StatisticalOutlierRemoval filter.
-  @param meanK the number of neighboring points to check
-  @param stdDev the standard deviation to accept
-
-  See: https://stats.stackexchange.com/questions/288669/the-algorithm-behind-pclstatisticaloutlierremoval
+  @brief Filter point clouds using pcl::RadiusRemovalFilter, points without a minimum number of neighbours within a certain radius are discarded.
+  @param radius radius
+  @param minNumberOfNeighbours
 */
-SKSURGERYPCLCPP_WINEXPORT np::ndarray RemoveOutlierPointsWrapper(const np::ndarray& input,
-                                                                 float meanK,
-                                                                 float stdDev
+SKSURGERYPCLCPP_WINEXPORT np::ndarray RadiusRemovalFilterWrapper(const np::ndarray& input,
+                                                                 float radius,
+                                                                 unsigned int minNumberOfNeighbours
                                                                 );
 }
+
 #endif

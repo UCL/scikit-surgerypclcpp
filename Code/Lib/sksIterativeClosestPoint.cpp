@@ -13,32 +13,51 @@
 =============================================================================*/
 
 #include "sksIterativeClosestPoint.h"
+#include <pcl/registration/icp.h>
+#include <pcl/registration/icp_nl.h>
 
 namespace sks {
 
 //-----------------------------------------------------------------------------
-double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
-                             const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
-                             const unsigned int maxNumberOfIterations,
-                             const float maxCorrespondenceDistance,
-                             const float transformationEpsilon,
-                             const float fitnessEpsilon,
-                             Eigen::Matrix4f& result
+double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr source,
+                             const pcl::PointCloud<pcl::PointXYZ>::ConstPtr target,
+                             unsigned int maxNumberOfIterations,
+                             float maxCorrespondenceDistance,
+                             float transformationEpsilon,
+                             float fitnessEpsilon,
+                             bool useLM,
+                             Eigen::Matrix4f& result,
+                             pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSource
                              )
 {
-  pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
-  icp.setInputSource(source);
-  icp.setInputTarget(target);
-  icp.setMaximumIterations(maxNumberOfIterations);
-  icp.setMaxCorrespondenceDistance(maxCorrespondenceDistance);
-  icp.setTransformationEpsilon(transformationEpsilon);
-  icp.setEuclideanFitnessEpsilon(fitnessEpsilon);
+  double residual = std::numeric_limits<double>::max();
 
-  pcl::PointCloud<pcl::PointXYZ> Final;
-  icp.align(Final);
-
-  result = icp.getFinalTransformation();
-  double residual = icp.getFitnessScore();
+  if (useLM)
+  {
+    pcl::IterativeClosestPointNonLinear<pcl::PointXYZ, pcl::PointXYZ> icp;
+    icp.setInputSource(source);
+    icp.setInputTarget(target);
+    icp.setMaximumIterations(maxNumberOfIterations);
+    icp.setMaxCorrespondenceDistance(maxCorrespondenceDistance);
+    icp.setTransformationEpsilon(transformationEpsilon);
+    icp.setEuclideanFitnessEpsilon(fitnessEpsilon);
+    icp.align(*transformedSource);
+    result = icp.getFinalTransformation();
+    residual = icp.getFitnessScore();
+  }
+  else
+  {
+    pcl::IterativeClosestPoint<pcl::PointXYZ, pcl::PointXYZ> icp;
+    icp.setInputSource(source);
+    icp.setInputTarget(target);
+    icp.setMaximumIterations(maxNumberOfIterations);
+    icp.setMaxCorrespondenceDistance(maxCorrespondenceDistance);
+    icp.setTransformationEpsilon(transformationEpsilon);
+    icp.setEuclideanFitnessEpsilon(fitnessEpsilon);
+    icp.align(*transformedSource);
+    result = icp.getFinalTransformation();
+    residual = icp.getFitnessScore();
+  }
 
   return residual;
 }

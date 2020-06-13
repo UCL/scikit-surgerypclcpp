@@ -17,8 +17,12 @@
 #include "sksIterativeClosestPointWrapper.h"
 #include "sksDownSamplePointsWrapper.h"
 #include "sksRemoveOutlierPointsWrapper.h"
+#include "sksPassThroughFilterWrapper.h"
+#include "sksRadiusRemovalFilterWrapper.h"
+#include "sksFeatureMatchWrapper.h"
+#include "sksGeneralizedIterativeClosestPointWrapper.h"
+#include "sksPythonDocstrings.h"
 #include "sksException.h"
-#include "python_docstrings.h"
 
 #include <ostream>
 #include <sstream>
@@ -39,9 +43,13 @@ BOOST_PYTHON_MODULE(sksurgerypclpython)
 {
   boost::python::numpy::initialize();
   boost::python::register_exception_translator<Exception>(&translate_exception);
-  boost::python::def("iterative_closest_point", sks::IterativeClosestPointWrapper, icp_docstring);
+  boost::python::def("icp", sks::IterativeClosestPointWrapper, icp_docstring);
   boost::python::def("down_sample_points", sks::DownSamplePointsWrapper, downsample_docstring);
   boost::python::def("remove_outlier_points", sks::RemoveOutlierPointsWrapper, remove_outlier_docstring);
+  boost::python::def("pass_through_filter", sks::PassThroughFilterWrapper, passthrough_docstring);
+  boost::python::def("radius_removal_filter", sks::RadiusRemovalFilterWrapper, radiusremoval_docstring);
+  boost::python::def("feature_match", sks::FeatureMatchWrapper, featurematch_docstring);
+  boost::python::def("gicp", sks::GeneralizedIterativeClosestPointWrapper, gicp_docstring);
 }
 
 }  // end namespace sks

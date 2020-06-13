@@ -45,17 +45,40 @@ TEST_CASE( "Translation test", "[ICP]" ) {
     targetCloud->points[i].z = sourceCloud->points[i].z + 1;
   }
 
+  pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSourceCloud (new pcl::PointCloud<pcl::PointXYZ>);
+  transformedSourceCloud->points.resize(numberOfPoints);
+
   Eigen::Matrix4f finalTransform;
 
   double residual = sks::IterativeClosestPoint(sourceCloud,
                                                targetCloud,
-                                               10,
-                                               std::sqrt (std::numeric_limits<double>::max ()),
-                                               -std::numeric_limits<double>::max (),
-                                               0,
-                                               finalTransform);
+                                               10,                                              // Max iterations
+                                               std::sqrt (std::numeric_limits<double>::max ()), // Max correspondence distance (unused)
+                                               -std::numeric_limits<double>::max (),            // Transformation epsilon (unused)
+                                               0,                                               // Fitness epsilon (unused)
+                                               false,                                           // Use LM-ICP
+                                               finalTransform,
+                                               transformedSourceCloud);
+
   std::cout << "ICP residual=" << residual << std::endl;
   std::cout << "ICP matrix=" << finalTransform << std::endl;
+  REQUIRE(residual < 0.00001);
+  REQUIRE(finalTransform(0, 3) == 1);
+  REQUIRE(finalTransform(1, 3) == 1);
+  REQUIRE(finalTransform(2, 3) == 1);
+
+  residual = sks::IterativeClosestPoint(sourceCloud,
+                                        targetCloud,
+                                        10,
+                                        std::sqrt (std::numeric_limits<double>::max ()),
+                                        -std::numeric_limits<double>::max (),
+                                        0,
+                                        false,
+                                        finalTransform,
+                                        transformedSourceCloud);
+
+  std::cout << "LMICP residual=" << residual << std::endl;
+  std::cout << "LMICP matrix=" << finalTransform << std::endl;
   REQUIRE(residual < 0.00001);
   REQUIRE(finalTransform(0, 3) == 1);
   REQUIRE(finalTransform(1, 3) == 1);

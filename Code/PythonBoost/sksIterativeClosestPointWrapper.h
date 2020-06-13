@@ -16,7 +16,6 @@
 #define sksIterativeClosestPointWrapper_h
 
 #include <boost/python/numpy.hpp>
-#include <sksIterativeClosestPoint.h>
 #include "sksWin32ExportHeader.h"
 
 namespace np = boost::python::numpy;
@@ -24,13 +23,27 @@ namespace np = boost::python::numpy;
 namespace sks
 {
 
+/**
+  @brief Implementation of Iterative Closest Point (ICP) matching source to target.
+  @param source [Nx3] source point cloud, where each row is x, y, z coordinates.
+  @param target [Nx3] target point cloud, where each row is x, y, z coordinates.
+  @param maxNumberOfIterations maximum number of iterations
+  @param maxCorrespondenceDistance distance above which point matches are discarded.
+  @param transformationEpsilon if the change in the transformation is below this threshold, the algorithm exits.
+  @param fitnessEpsilon if the change in the cost function is below this threshold, the algorithm exits.
+  @param useLM if true, does an LM-ICP variant, if false, normal ICP.
+  @param result output 4x4 matrix, must be pre-allocated.
+  @param transformedSource transformed source, must be pre-allocated.
+*/
 SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPointWrapper(const np::ndarray& source,
                                                               const np::ndarray& target,
-                                                              const unsigned int maxNumberOfIterations,
-                                                              const float maxCorrespondenceDistance,
-                                                              const float transformationEpsilon,
-                                                              const float fitnessEpsilon,
-                                                              np::ndarray& result
+                                                              unsigned int maxNumberOfIterations,
+                                                              float maxCorrespondenceDistance,
+                                                              float transformationEpsilon,
+                                                              float fitnessEpsilon,
+                                                              bool useLM,
+                                                              np::ndarray& result,
+                                                              np::ndarray& transformedSource
                                                               );
 }
 #endif

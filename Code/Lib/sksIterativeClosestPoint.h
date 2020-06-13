@@ -16,20 +16,22 @@
 #define sksIterativeClosestPoint_h
 
 #include <pcl/point_types.h>
-#include <pcl/registration/icp.h>
+#include <pcl/point_cloud.h>
 
 #include "sksWin32ExportHeader.h"
 #include <stdexcept>
 
 namespace sks {
 
-SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
-                                                       const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
-                                                       const unsigned int maxNumberOfIterations,
-                                                       const float maxCorrespondenceDistance,
-                                                       const float transformationEpsilon,
-                                                       const float fitnessEpsilon,
-                                                       Eigen::Matrix4f& result
+SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr source,
+                                                       const pcl::PointCloud<pcl::PointXYZ>::ConstPtr target,
+                                                       unsigned int maxNumberOfIterations,
+                                                       float maxCorrespondenceDistance,
+                                                       float transformationEpsilon,
+                                                       float fitnessEpsilon,
+                                                       bool useLM,
+                                                       Eigen::Matrix4f& result,
+                                                       pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSource
                                                        );
 
 

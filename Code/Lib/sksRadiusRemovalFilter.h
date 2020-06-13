@@ -12,30 +12,19 @@
 
 =============================================================================*/
 
-#ifndef sksMyFunctions_h
-#define sksMyFunctions_h
+#ifndef sksRadiusRemovalFilter_h
+#define sksRadiusRemovalFilter_h
 
-#include <pcl/point_types.h>
 #include <pcl/point_cloud.h>
+#include <pcl/point_types.h>
 
 #include "sksWin32ExportHeader.h"
 
-/**
-* \file sksMyFunctions.h
-* \brief Various Utilities.
-* \ingroup utilities
-*/
-namespace sks
-{
+namespace sks {
 
-/**
-* \brief My first function, adds two integers.
-*/
-SKSURGERYPCLCPP_WINEXPORT int MyFirstAddFunction(int a, int b);
-
-
-pcl::PointCloud<pcl::PointNormal>::Ptr computeNormals(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr input,
-                                                      float normalSearchRadius);
+SKSURGERYPCLCPP_WINEXPORT
+const pcl::PointCloud<pcl::PointXYZ>::Ptr RadiusRemovalFilter(const pcl::PointCloud<pcl::PointXYZ>::Ptr input,
+                                                              float radius, unsigned int minNumberOfNeighbours);
 
 } // end namespace
 

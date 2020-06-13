@@ -12,25 +12,27 @@
 
 =============================================================================*/
 
-#include "sksRemoveOutlierPointsWrapper.h"
+#include "sksPassThroughFilterWrapper.h"
 #include "sksConversionUtils.h"
-#include <sksRemoveOutliersFromPointCloud.h>
+#include <sksPassThroughFilter.h>
 
 
 namespace sks
 {
 
 //-----------------------------------------------------------------------------
-np::ndarray RemoveOutlierPointsWrapper(const np::ndarray& input,
-                                       float meanK,
-                                       float stdDev
-                                      )
+np::ndarray PassThroughFilterWrapper(const np::ndarray& input,
+                                     char fieldName,
+                                     float minDistance,
+                                     float maxDistance,
+                                     bool insideInterval
+                                    )
 {
   CheckInputIs3DFloat(input);
 
   pcl::PointCloud<pcl::PointXYZ>::Ptr inputCloud = ConvertInputToPointCloud(input);
 
-  pcl::PointCloud<pcl::PointXYZ>::Ptr resultCloud = sks::RemoveOutliersFromPointCloud(inputCloud, meanK, stdDev);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr resultCloud = sks::PassThroughFilter(inputCloud, fieldName, minDistance, maxDistance, insideInterval);
 
   np::ndarray result = ConvertPointCloudToNumpy(resultCloud);
 
