@@ -136,4 +136,28 @@ auto featurematch_docstring = R"(
     :rtype: np.ndarray, np.ndarray
     )";
 
+auto gicp_docstring = R"(
+
+    Run Generalized Iterative Closest Point (ICP) algorithm.
+
+    :param source: [Nx3] source point cloud
+    :type source: np.ndarray
+    :param target: [Mx3] target point cloud
+    :type target: np.ndarray
+    :type normalSearchRadius: float
+    :param normalSearchRadius: radius to search when computing surface normals
+    :type angleThresholdInDegreesForNormalCorrespondence: float
+    :param angleThresholdInDegreesForNormalCorrespondence: angle in degrees between surface normals, above which, matches are discarded.
+    :param maxNumberOfIterations: maximum number of iterations in the ICP loop
+    :type maxNumberOfIterations: unsigned int
+    :param maxCorrespondenceDistance: maximum distance between corresponding points, above which point is discarded
+    :type maxCorrespondenceDistance: float
+    :param transformationEpsilon: small change in transformation, below which causes early termination of ICP loop
+    :type transformationEpsilon: float
+    :param fitnessEpsilon: small change in cost function, below which causes early termination of ICP loop
+    :type fitnessEpsilon: float
+    :return: 4x4 Transform matrix, transformed source cloud
+    :rtype: np.ndarray, np.ndarray
+    )";
+
 #endif

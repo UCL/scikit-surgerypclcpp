@@ -26,10 +26,10 @@ namespace sks
 /**
   @Brief Computes an initial rigid registration based on SIFT keypoints, FPFH descriptors, RANSAC to find a close match, and then SVD on matched points.
   @param normalSearchRadius radius to search to calculate surface normal for each input point.
-  @param siftMinScale SIFT minimum scale. (TODO: what does this mean? see pcl::SIFTSIFTKeypoint)
-  @param siftNumOctaves SIFT number of octaves/scales.  (TODO: what does this mean?)
-  @param siftNumScalesPerOctave SIFT number of scales per octave.  (TODO: what does this mean?)
-  @param siftMinContrast SIFT minimum contrast. (TODO: what does this mean?)
+  @param siftMinScale SIFT minimum scale.
+  @param siftNumOctaves SIFT number of octaves/scales.
+  @param siftNumScalesPerOctave SIFT number of scales per octave.
+  @param siftMinContrast SIFT minimum contrast.
   @param siftKSearch SIFT k nearest neighbours to search.
   @param ransacInlierThreshold distance threshold to determine inliers when testing potential transformations.
   @param ransacMaximumIterations maximum iterations to test.

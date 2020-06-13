@@ -47,14 +47,16 @@ TEST_CASE( "Generalized Iterative Closest Point", "[GICP]" ) {
   initialTransform(1, 3) = -0.002;
   initialTransform(2, 3) = 0.003;
 
-  typename pcl::PointCloud<pcl::PointXYZ>::Ptr sourceTransformed(new pcl::PointCloud<pcl::PointXYZ>);
-  sourceTransformed->points.resize(sourceFiltered->points.size());
+  pcl::PointCloud<pcl::PointXYZ>::Ptr sourceOffset(new pcl::PointCloud<pcl::PointXYZ>);
+  sourceOffset->points.resize(sourceFiltered->points.size());
+  pcl::transformPointCloud(*sourceFiltered, *sourceOffset, initialTransform);
 
-  pcl::transformPointCloud(*sourceFiltered, *sourceTransformed, initialTransform);
+  pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSourceCloud (new pcl::PointCloud<pcl::PointXYZ>);
+  transformedSourceCloud->points.resize(sourceFiltered->points.size());
 
   Eigen::Matrix4f finalTransform;
 
-  double residual = sks::GeneralizedIterativeClosestPoint(sourceTransformed,
+  double residual = sks::GeneralizedIterativeClosestPoint(sourceOffset,
                                                           targetFiltered,
                                                           0.02,   // Normal search radius
                                                           45,     // Angle threshold when checking correspondences
@@ -62,7 +64,8 @@ TEST_CASE( "Generalized Iterative Closest Point", "[GICP]" ) {
                                                           0.1,    // ICP max correspondence distance
                                                           0.0001, // ICP transformation epsilon
                                                           0.0001, // ICP cost function epsilon
-                                                          finalTransform
+                                                          finalTransform,
+                                                          transformedSourceCloud
                                                           );
 
   std::cout << "GICP matrix=" << finalTransform << std::endl;

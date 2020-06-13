@@ -28,6 +28,7 @@ if(NOT BUILDING_GUIS)
     sksPassThroughFilterWrapper.cpp
     sksRadiusRemovalFilterWrapper.cpp
     sksFeatureMatchWrapper.cpp
+    sksGeneralizedIterativeClosestPointWrapper.cpp
     sksLibPython.cpp
   )
 

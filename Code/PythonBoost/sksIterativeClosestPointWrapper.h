@@ -32,6 +32,8 @@ namespace sks
   @param transformationEpsilon if the change in the transformation is below this threshold, the algorithm exits.
   @param fitnessEpsilon if the change in the cost function is below this threshold, the algorithm exits.
   @param useLM if true, does an LM-ICP variant, if false, normal ICP.
+  @param result output 4x4 matrix, must be pre-allocated.
+  @param transformedSource transformed source, must be pre-allocated.
 */
 SKSURGERYPCLCPP_WINEXPORT double IterativeClosestPointWrapper(const np::ndarray& source,
                                                               const np::ndarray& target,

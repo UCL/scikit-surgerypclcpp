@@ -14,6 +14,7 @@
 
 #include "sksGeneralizedIterativeClosestPoint.h"
 #include "sksMyFunctions.h"
+#include "sksExceptionMacro.h"
 #include <pcl/registration/gicp.h>
 #include <pcl/registration/correspondence_estimation.h>
 #include <pcl/registration/transformation_estimation_svd.h>
@@ -24,15 +25,16 @@
 namespace sks {
 
 //-----------------------------------------------------------------------------
-double GeneralizedIterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Ptr source,
-                                        const pcl::PointCloud<pcl::PointXYZ>::Ptr target,
+double GeneralizedIterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::ConstPtr source,
+                                        const pcl::PointCloud<pcl::PointXYZ>::ConstPtr target,
                                         float normalSearchRadius,
                                         float angleThresholdInDegreesForNormalCorrespondence,
                                         unsigned int icpMaxNumberOfIterations,
                                         float icpMaxCorrespondenceDistance,
                                         float icpTransformationEpsilon,
                                         float icpFitnessEpsilon,
-                                        Eigen::Matrix4f& result
+                                        Eigen::Matrix4f& result,
+                                        pcl::PointCloud<pcl::PointXYZ>::Ptr transformedSource
                                         )
 {
   #define Scalar float
@@ -66,8 +68,20 @@ double GeneralizedIterativeClosestPoint(const pcl::PointCloud<pcl::PointXYZ>::Pt
   icp.setTransformationEpsilon(icpTransformationEpsilon);
   icp.setEuclideanFitnessEpsilon(icpFitnessEpsilon);
 
-  pcl::PointCloud<pcl::PointNormal>::Ptr transformedSource(new pcl::PointCloud<pcl::PointNormal>);
-  icp.align(*transformedSource);
+  pcl::PointCloud<pcl::PointNormal>::Ptr tmpTransformed(new pcl::PointCloud<pcl::PointNormal>);
+  icp.align(*tmpTransformed);
+
+  if (tmpTransformed->points.size() != transformedSource->points.size())
+  {
+    sksExceptionThrow() << "transformedSource is the wrong size. It should have " << tmpTransformed->points.size() << " points." << std::endl;
+  }
+  for(size_t i = 0; i < tmpTransformed->points.size(); ++i)
+  {
+    transformedSource->points[i].x = tmpTransformed->points[i].x;
+    transformedSource->points[i].y = tmpTransformed->points[i].y;
+    transformedSource->points[i].z = tmpTransformed->points[i].z;
+  }
+
   result = icp.getFinalTransformation();
   residual = icp.getFitnessScore();
 
