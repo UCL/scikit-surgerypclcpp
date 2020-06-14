@@ -92,7 +92,7 @@ build_script:
     cmake -version
     mkdir build
     cd build
-    cmake -G "${Env:COMPILER}" -DBUILD_SUPERBUILD:BOOL=ON -DBUILD_TESTING:BOOL=OFF --config ${Env:CONFIGURATION} ..
+    cmake -G "${Env:COMPILER}" -DBUILD_SUPERBUILD:BOOL=ON -DBUILD_TESTING:BOOL=ON --config ${Env:CONFIGURATION} ..
     if ($LastExitCode -ne 0) {throw $LastExitCode}
     cmake --build . --config ${Env:CONFIGURATION} --parallel 2
     if ($LastExitCode -ne 0) {throw $LastExitCode}
@@ -106,7 +106,8 @@ test_script:
     pwd
     cd SKSURGERYPCLCPP-build
     pwd
-    echo "Not testing C++ for now."
+    ctest -C ${Env:CONFIGURATION}
+    if ($LastExitCode -ne 0) {throw $LastExitCode}
     
 after_test:
 - ps: |
