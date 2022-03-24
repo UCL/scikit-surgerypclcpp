@@ -1,0 +1,49 @@
+name: Windows Deploy
+
+on: [push]
+  # push:
+  #   tags:
+  #     - v*
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python-ver: 3.6
+            architecture: "x86"
+            COMPILER: Visual Studio 14 2015
+          - python-ver: 3.6
+            architecture: "x64"
+            COMPILER: Visual Studio 14 2015 Win64
+          - python-ver: 3.7
+            architecture: "x86"
+            COMPILER: Visual Studio 16 2019
+          - python-ver: 3.7
+            architecture: "x64"
+            COMPILER: Visual Studio 16 2019 Win64
+
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: "true"
+      - uses: microsoft/setup-msbuild@v1.1
+      - uses: actions/setup-python@v2.2.1
+        with:
+          python-version: ${{ matrix.python-ver }}
+          architecture: ${{ matrix.architecture }}
+
+      - name: Build
+        run: |
+          mkdir build
+          cd build
+          cmake -G "${{ matrix.COMPILER }}" -DBUILD_Python_PyBind:BOOL=ON -DCMAKE_BUILD_TYPE:String=Release ..
+          cmake --build .
+
+      # - name: deploy
+      #   run: |
+      #     pip install twine
+      #     twine upload --repository pypi -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} --skip-existing dist/*

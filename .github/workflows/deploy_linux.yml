@@ -1,0 +1,64 @@
+name: Linux Deploy 
+on: [push]
+  # push:
+  #   tags:
+  #     - v*
+
+env:
+  DO_PYTHON_BUILD: true
+  PS4: '+(${BASH_SOURCE}:${LINENO}): ${FUNCNAME[0]:+${FUNCNAME[0]}(): }'
+  REPO_DIR: .
+  BUILD_COMMIT: HEAD
+  BUILD_DEPENDS: numpy wheel six
+  TEST_DEPENDS: numpy pytest
+  BDIST_PARAMS: ""
+  UNICODE_WIDTH: 32
+
+jobs:
+  build:
+
+    strategy:
+      fail-fast: false
+      matrix:
+        python-ver: [3.6, 3.7, 3.8]
+        platform: [x86_64, i686]
+
+    runs-on: ubuntu-latest
+      
+    env:
+      PLAT: ${{ matrix.platform }}
+      MB_PYTHON_VERSION: ${{ matrix.python-ver }}
+      
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: 'true'
+      - uses: actions/setup-python@v2.2.1
+        with:
+          python-version: ${{ matrix.python-ver }}
+      - name: Run multibuild
+        run: |
+          pip install virtualenv
+          
+          # Workaround because we can't edit travis_steps.sh in multibuild to change
+          # the TRAVIS_OS_NAME to match the actions version
+
+          WHEEL_SDIR=${WHEEL_SDIR:-wheelhouse}
+          MULTIBUILD_DIR=$(dirname "${BASH_SOURCE[0]}")
+          if [ ! -d "$PWD/$WHEEL_SDIR" ]; then mkdir $PWD/$WHEEL_SDIR; fi
+
+          source multibuild/common_utils.sh
+          source multibuild/travis_linux_steps.sh
+          before_install
+
+          DOCKER_IMAGE=quay.io/skvark/manylinux1_$PLAT
+          build_multilinux $PLAT "build_wheel $REPO_DIR"
+
+          install_run $PLAT
+
+      # - name: deploy
+      #   run: |
+      #     pip install twine
+      #     twine upload --repository pypi -u __token__ -p ${{ secrets.PYPI_API_TOKEN }} --skip-existing wheelhouse/*
+
+
